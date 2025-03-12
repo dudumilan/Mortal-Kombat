@@ -1,0 +1,105 @@
+@font-face {
+    font-family: mortal_kombat;
+    src: url(./fonts/mk1.ttf)
+  }
+
+body, ul,li,p{
+    margin:0px;
+    padding: 0px;
+    list-style: none;
+    font-size: 1.2rem;
+    font-family:arial;
+    display: flex;
+}
+a{
+    text-decoration: none;
+}
+.menu{
+    display: flex;
+}
+.cabecario{
+    justify-content: center;
+}
+.principal{
+    display: flex;
+    justify-content: space-between;
+    justify-items: center;
+    align-items: center;
+    padding: 20px;
+    background-color: blueviolet;
+}
+.logo{
+    background-color: black;
+    background-image: url('imagens/pngimg.com/mortal_kombat_PNG65.png');
+}
+.logo:hover{
+    background-color: black;
+}
+@keyframes logo1 {
+    0%,
+    100%{
+
+    }
+    
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'mortal_kombat' , sans-serif;
+}
+.card{
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    border-radius: 20px;
+    box-shadow: 0px 35px 80px color(srgb red green blue);
+    transition: 0.5s;
+}
+
+.card .img-box{
+    height: auto;
+    transition: 0.5s;
+}
+
+.card:hover .img-box{
+    top: -100px;
+    scale: 0.75;
+}
+
+.card .img.box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.img-box2{
+    display: none;
+}
+.card:hover .img-box2   {
+    display: block;
+}
+
+.card .content{
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    position: absolute;
+    top: 250px;
+    width: 100%;
+    padding: 0px 30px;
+    text-align: center;
+    height: 30px;
+    overflow: hidden;
+}
+.card:hover .content{
+    top: 130px;
+    height: 250px;
+}
+.card .leia-mais{
+    background:linear-gradient(90deg,color);
+    padding: 12px;
+    color: black;
+    text-decoration: none;
+    border-radius: 8px;
+}
+    
