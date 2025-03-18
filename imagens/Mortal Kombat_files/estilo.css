@@ -1,6 +1,6 @@
 @font-face {
     font-family: mortal_kombat;
-    src: url(./fonts/mk2.ttf)
+    src: url(./fonts/mk1.ttf)
   }
 
 body, ul,li,p{
@@ -15,12 +15,7 @@ body, ul,li,p{
 a{
     text-decoration: none;
     color: white;
-    font-size: 30px;background: #8B140D;
-    background: linear-gradient(to bottom, #8B140D 23%, #CE2D08 33%, #D34C0A 37%, #C25508 60%, #D79E32 66%, #EACE5D 72%, #F6E167 76%, #F6F31F 80%, #000000 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    
-    
+    font-size: 30px;
 }
 .menu{
     display: flex;
