@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mortal Kombat</title>
+    <link rel="stylesheet" href="css/estilo.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .animation-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            animation: fadeOut 3s forwards 3s;
+        }
+        .animation-container img {
+            width: 200px;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.5); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        @keyframes fadeOut {
+            to { opacity: 0; visibility: hidden; }
+        }
+
+        .content {
+            display: none;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="animation-container">
+        <img src="imagens/mortal_kombat_logo_png_2024_by_wcwjunkbox_dhgv7kw-fullview.png" alt="Mortal Kombat Logo">
+    </div>
+    
+    <div class="content">
+        <div class="card">
+            <div class="img-box">
+                <nav>
+                    <ul class="logo-clicar">
+                        <li><a href="#"><img src="imagens/New Template-Photoroom.png" width="85px"></a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="img-box2">
+                <img src="imagens/mortal_kombat_logo_png_2024_by_wcwjunkbox_dhgv7kw-fullview.png" width="300px">
+            </div>
+            <div class="content">
+                <h2>Mortal Kombat</h2>
+                <p>Bem-vindo ao universo de Mortal Kombat.</p>
+                <a href="#" class="leia-mais">Veja mais jogos</a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        setTimeout(() => {
+            document.querySelector('.content').style.display = 'block';
+        }, 3000);
+    </script>
+</body>
+</html>

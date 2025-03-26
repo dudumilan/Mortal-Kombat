@@ -2,43 +2,59 @@ body {
     margin: 0;
     padding: 0;
     background-color: black;
-    /* display: flex; */
+    display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    overflow: hidden;a{
-    text-decoration: none;
-    color: white;
-    font-size: 30px;
+    overflow: hidden;
 }
-.cabecario {
+.animation-container {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #661611; 
-    padding: 10px;
-    z-index: 1000; 
+    height: 100%;
+    background-color: #661611;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    z-index: 100;
+    animation: fadeOut 3s forwards 3s;
+}
+.animation-container img {
+    width: 200px;
+    opacity: 0;
+    animation: fadeIn 2s forwards;
 }
 
-.menu {
-    display: flex;
-    gap: 15px;
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.5); }
+    to { opacity: 1; transform: scale(1); }
 }
 
-.menu a {
-    color: white;
-    text-decoration: none;
-    font-size: 20px;
+@keyframes fadeOut {
+    to { opacity: 0; visibility: hidden; }
 }
 
 .content {
-    margin-top: 80px; 
+    /* display: none; */
 }
-
+a{
+    text-decoration: none;
+    color: white;
+    font-size: 30px;
+}
+.menu{
+    display: flex;
+    text-align: center;
+}
+.cabecario{
+    color:white;
+    background-color: none;
+    display: flex; 
+    flex-wrap:wrap;
+    justify-content: space-between;
+}
 .principal{
     display: flex;
     justify-content: space-between;
@@ -76,12 +92,14 @@ body {
 }
 .card{
     display: flex;
+    height: 350px;
     justify-content: center;
+    background-color: none;
     border-radius: 20px;
     box-shadow: 0px 35px 80px;
     transition: 0.5s;
     margin-left: -3px;
-     
+    
 }
 
 .card .img-box{
@@ -132,44 +150,4 @@ body {
     color: black;
     text-decoration: none;
     border-radius: 8px;
-}
-
-}
-.animation-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #661611;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 100;
-    animation: fadeOut 3s forwards 3s;
-}
-.animation-container img {
-    width: 200px;
-    opacity: 0;
-    animation: fadeIn 2s forwards;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.5); }
-    to { opacity: 1; transform: scale(1); }
-}
-
-@keyframes fadeOut {
-    to { opacity: 0; visibility: hidden; }
-}
-
-.content {
-    /* display: none; */
-    display: flex;
-    justify-content: space-evenly;
-    width: 100%;
-
-}
-.mks{
-    padding-bottom: 50%;
 }
