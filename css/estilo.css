@@ -1,7 +1,8 @@
 body {
+    background-image: url("../imagens/mortal\ kombat\ imagem\ de\ fundo.webp");
     margin: 0;
     padding: 0;
-    background-color: black;
+    /*background-color: black;*/
     /* display: flex; */
     justify-content: center;
     align-items: center;
@@ -10,6 +11,45 @@ body {
     text-decoration: none;
     color: white;
     font-size: 30px;
+        
+}
+.portais {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 80px;
+    gap: 20px;
+    width: 90%;
+}
+.portal {
+    cursor: pointer;
+    transition: transform 0.5s ease-in-out, opacity 0.5s;
+    transform: scale(0);
+    opacity: 0;
+    background-size: cover;
+    background-position: center;
+    width: 200px;
+    height: 300px;
+    border-radius: 50%;
+    color: white;
+    text-align: center;
+    box-shadow: 0px 35px 80px rgba(255, 1, 1, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 18px;
+}
+.portal.show {
+    transform: scale(1);
+    opacity: 1;
+}
+.portal:hover {
+    transform: scale(1.1);
+}
+.portal.active {
+    border: 3px solid #ffcc00;
+    transform: scale(1.2);
 }
 .cabecario {
     position: fixed;
@@ -67,6 +107,44 @@ body {
         opacity: 1;
     }
     
+}
+.portais {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 80px;
+    gap: 20px;
+    width: 90%;
+}
+.portal {
+    cursor: pointer;
+    transition: transform 0.5s ease-in-out, opacity 0.5s;
+    transform: scale(0);
+    opacity: 0;
+    background-size: cover;
+    background-position: center;
+    width: 200px;
+    height: 300px;
+    border-radius: 50%;
+    color: white;
+    text-align: center;
+    box-shadow: 0px 35px 80px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 18px;
+}
+.portal.show {
+    transform: scale(1);
+    opacity: 1;
+}
+.portal:hover {
+    transform: scale(1.1);
+}
+.portal.active {
+    border: 3px solid #ffcc00;
+    transform: scale(1.2);
 }
 *{
     margin: 0;
@@ -151,7 +229,7 @@ body {
 .animation-container img {
     width: 200px;
     opacity: 0;
-    animation: fadeIn 2s forwards;
+    animation: fadeOut 2s forwards;
 }
 
 @keyframes fadeIn {
@@ -173,3 +251,7 @@ body {
 .mks{
     padding-bottom: 50%;
 }
+        #anos-90 { background-image: url('imagens/mk90s.jpg'); }
+        #anos-2000 { background-image: url('imagens/mk2000s.jpg'); }
+        #anos-2010 { background-image: url('imagens/mk2010s.jpg'); }
+        #anos-2020 { background-image: url('imagens/mk2020s.jpg'); }

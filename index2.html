@@ -4,31 +4,106 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mortal Kombat</title>
-    <link rel="stylesheet" href="css/estilo2.css">    
+    <link rel="stylesheet" href="css/estilo.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            font-family: 'mortal_kombat', sans-serif;
+        }
+        .cabecalho {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #661611;
+            padding: 10px;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .portais {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 80px;
+            gap: 20px;
+            width: 90%;
+        }
+        .portal {
+            cursor: pointer;
+            transition: transform 0.5s ease-in-out, opacity 0.5s;
+            transform: scale(0);
+            opacity: 0;
+            background-size: cover;
+            background-position: center;
+            width: 200px;
+            height: 300px;
+            border-radius: 50%;
+            color: white;
+            text-align: center;
+            box-shadow: 0px 35px 80px rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .portal.show {
+            transform: scale(1);
+            opacity: 1;
+        }
+        .portal:hover {
+            transform: scale(1.1);
+        }
+        .portal.active {
+            border: 3px solid #ffcc00;
+            transform: scale(1.2);
+        }
+        #anos-90 { background-image: url('imagens/mk90s.jpg'); }
+        #anos-2000 { background-image: url('imagens/mk2000s.jpg'); }
+        #anos-2010 { background-image: url('imagens/mk2010s.jpg'); }
+        #anos-2020 { background-image: url('imagens/mk2020s.jpg'); }
+    </style>
 </head>
 <body>
-    <div class="animation-container">
-        <img src="imagens/pngimg.com - mortal_kombat_PNG65.png" alt="Mortal Kombat Logo">
-    </div>
-    
-    <div class="content">
-        <div class="card">
-            <div class="img-box">
-                <nav>
-                    <ul class="logo-clicar">
-                        <li><a href="#"><img src="imagens/New Template-Photoroom.png" width="85px"></a></li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="img-box2">
-                <img src="imagens/mortal_kombat_logo_png_2024_by_wcwjunkbox_dhgv7kw-fullview.png" width="300px">
-            </div>
-            <div class="content-text">
-                <h2>Mortal Kombat</h2>
-                <p>Bem-vindo ao universo de Mortal Kombat.</p>
-                <a href="#" class="leia-mais">Veja os jogos</a>
-            </div>
+    <header class="cabecalho">
+        <h1>Mortal Kombat</h1>
+    </header>
+    <section class="portais">
+        <div class="portal show" id="anos-90" onclick="togglePortal(this)">
+            <h2>Anos 90</h2>
         </div>
-
+        <div class="portal show" id="anos-2000" onclick="togglePortal(this)">
+            <h2>Anos 2000</h2>
+        </div>
+        <div class="portal show" id="anos-2010" onclick="togglePortal(this)">
+            <h2>Anos 2010</h2>
+        </div>
+        <div class="portal show" id="anos-2020" onclick="togglePortal(this)">
+            <h2>Anos 2020</h2>
+        </div>
+    </section>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            setTimeout(() => {
+                document.querySelectorAll('.portal').forEach(portal => {
+                    portal.classList.add('show');
+                });
+            }, 100);
+        });
+        
+        function togglePortal(element) {
+            document.querySelectorAll('.portal').forEach(portal => portal.classList.remove('active'));
+            element.classList.add('active');
+        }
+    </script>
 </body>
 </html>

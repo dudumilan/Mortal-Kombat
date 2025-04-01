@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mortal Kombat</title>
+    <link  rel="stylesheet"    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="css/estilo.css">
 </head>
 <body>
@@ -12,34 +13,13 @@
         </div>
         
     </div>
-    <!-- <nav class="menu">
-        <a href="#">Home</a>
-        <a href="#">Jogos</a>
-        <a href="#">Personagens</a>
-        <a href="#">Contato</a>
-    </nav> -->
     <div class="animation-container">
         <img src="imagens/pngimg.com - mortal_kombat_PNG65.png" alt="Mortal Kombat Logo">
     </div>
     
     <div class="content">
-        <!-- <div class="card">
-            <div class="img-box">
-                <nav>
-                    <ul class="logo-clicar">
-                        <li><a href="#"><img src="imagens/New Template-Photoroom.png" width="85px"></a></li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="img-box2">
-                <img src="imagens/mortal_kombat_logo.png" width="300px">
-            </div>
-            <div class="content-text">
-                <h2>Mortal Kombat</h2>
-                <p>Bem-vindo ao universo de Mortal Kombat.</p>
-                <a href="#" class="leia-mais">Veja os </a>
-            </div>
-        </div> -->
+
+
     <div class="card mk1">
         <div class="img-box">
             <nav>
@@ -58,6 +38,7 @@
             <a href="#" class="leia-mais">Veja os jogos</a>
         </div>
     </div>
+
     <div class="card mk2">
         <div class="img-box">
             <nav>
@@ -109,25 +90,36 @@
             <p>Badasçdas.</p>
             <a href="#" class="leia-mais">Veja os jogos</a>
         </div>
-    </div>  
-    <div class="card mk5">
-        <div class="img-box">
-            <nav>
-                <ul class="logo-clicar">
-                    <li><a href="#"><img src="imagens/New Template-Photoroom.png" width="85px"></a></li>
-                </ul>
-            </nav>
-        </div>
-        <div class="img-box2">
-            <img src="imagens/mortal_kombat_logo_png_2024_by_wcwjunkbox_dhgv7kw-fullview.png" width="300px">
-        </div>
-        <div class="content-text">
-            <h2>Mortal Kombat</h2>
-            <p>Badasçdas.</p>
-            <a href="#" class="leia-mais">Veja os jogos</a>
-        </div>
-    </div>  
+    </div>
     </div>
     <script src="script.js"></script>
+    <section class="portais">
+        <div class="portal show" id="anos-90" onclick="togglePortal(this)">
+            <h2>Anos 90</h2>
+        </div>
+        <div class="portal show" id="anos-2000" onclick="togglePortal(this)">
+            <h2>Anos 2000</h2>
+        </div>
+        <div class="portal show" id="anos-2010" onclick="togglePortal(this)">
+            <h2>Anos 2010</h2>
+        </div>
+        <div class="portal show" id="anos-2020" onclick="togglePortal(this)">
+            <h2>Anos 2020</h2>
+        </div>
+    </section>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            setTimeout(() => {
+                document.querySelectorAll('.portal').forEach(portal => {
+                    portal.classList.add('show');
+                });
+            }, 100);
+        });
+        
+        function togglePortal(element) {
+            document.querySelectorAll('.portal').forEach(portal => portal.classList.remove('active'));
+            element.classList.add('active');
+        }
+    </script>
 </body>
 </html>
