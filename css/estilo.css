@@ -1,75 +1,46 @@
 body {
-    background-image: url("../imagens/mortal\ kombat\ imagem\ de\ fundo.webp");
-    margin: 0;
-    padding: 0;
-    background: url('https://wallpapercave.com/wp/wp2512693.jpg') no-repeat center center/cover;
-    display: flex;
-    align-items: center;
-    height: 100vh;
-    font-family: 'Staatliches', sans-serif;
-}
+            margin: 0;
+            padding: 0;
+            background: url('https://wallpapercave.com/wp/wp2512693.jpg') no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Staatliches', sans-serif;
+        }
 
-/* Coloca os quadrados na lateral esquerda */
-.grid-container {
-    display: flex;
-    flex-direction: column; /* Empilha na vertical */
-    position: fixed;
-    left: 20px; /* Mantém na lateral esquerda */
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
-}
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(5, 120px);
+            grid-gap: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
+        }
 
-.character {
-    width: 120px;
-    height: 150px;
-    background: #222;
-    border: 3px solid rgba(255, 0, 0, 0.8);
-    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    cursor: pointer;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    margin-bottom: 10px;
-}
+        .character {
+            width: 120px;
+            height: 150px;
+            background: #222;
+            border: 3px solid rgba(255, 0, 0, 0.8);
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
 
-.character img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+        .character img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-.character:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 20px rgba(255, 255, 0, 1);
-    border-color: yellow;
-}
-
-/* Nome do personagem no canto direito */
-.character::after {
-    content: attr(alt);
-    position: fixed;
-    right: 50px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: yellow;
-    font-size: 40px;
-    text-shadow: 3px 3px 10px red;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-    font-weight: bold;
-    white-space: nowrap;
-}
-
-.character:hover::after {
-    opacity: 1;
-}
-        #anos-90 { background-image: url('imagens/mk90s.jpg'); }
-        #anos-2000 { background-image: url('imagens/mk2000s.jpg'); }
-        #anos-2010 { background-image: url('imagens/mk2010s.jpg'); }
-        #anos-2020 { background-image: url('imagens/mk2020s.jpg'); }
+        .character:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255, 255, 0, 1);
+            border-color: yellow;
+        }
