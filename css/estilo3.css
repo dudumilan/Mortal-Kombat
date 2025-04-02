@@ -1,177 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+
 body {
     margin: 0;
     padding: 0;
-    background-color: #661611;
+    background: url('https://wallpapercave.com/wp/wp2512693.jpg') no-repeat center center/cover;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    overflow: hidden;
-}
-.animation-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: color black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 100;
-    animation: fadeOut 3s forwards 3s;
-}
-.animation-container img {
-    width: 200px;
-    opacity: 0;
-    animation: fadeIn 2s forwards;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.5); }
-    to { opacity: 1; transform: scale(1); }
-}
-
-@keyframes fadeOut {
-    to { opacity: 0; visibility: hidden; }
-}
-
-.content {
-    /* display: none; */
-    display: flex;
-    gap:50px;
-}
-a{
-    text-decoration: none;
+    font-family: 'Staatliches', sans-serif;
     color: white;
-    font-size: 30px;
-}
-.menu{
-    display: flex;
     text-align: center;
 }
-.cabecario{
-    color:white;
-    background-color: none;
-    display: flex; 
-    flex-wrap:wrap;
-    justify-content: space-between;
-}
-.principal{
-    display: flex;
-    justify-content: space-between;
-    justify-items: center;
-    align-items: center;
+
+.menu-container {
+    background: rgba(0, 0, 0, 0.8);
     padding: 20px;
-    background-color: blueviolet;
+    border-radius: 10px;
+    box-shadow: 0 0 20px red;
+    width: 400px;
 }
-.logo{
-    background-color: none;
-    background-image: url('../imagens/mortal_kombat_logo_png_2024_by_wcwjunkbox_dhgv7kw-fullview.png');
+
+h1 {
+    font-size: 50px;
+    text-shadow: 4px 4px 10px red;
 }
-.logo:hover{
-    background-color: none;
-    animation: testeimg 1s infinite;
-}
-@keyframes testeimg {
-    0%,
-    50%{
-        transition: opacity 0.3s ease-in;
-    }
-    75%{
-        transition: opacity 0.75s ease-in;
-    }
-    100%{
-        opacity: 1;
-    }
-    
-}
-*{
-    margin: 0;
+
+.menu {
+    list-style: none;
     padding: 0;
-    box-sizing: border-box;
-    font-family: 'mortal_kombat' , sans-serif;
 }
-.portal {
+
+.menu-item {
+    font-size: 30px;
+    padding: 10px;
     cursor: pointer;
-    transition: transform 0.3s ease-in-out;
+    transition: 0.3s;
 }
-.portal:hover {
-    transform: scale(1.05);
-}
-.portal.active {
-    background-color: #ffcc00;
+
+.menu-item:hover {
+    color: yellow;
+    text-shadow: 0px 0px 15px red, 0px 0px 30px yellow;
     transform: scale(1.1);
-}
-.card{
-    display: flex;
-    justify-content: center;
-    height: 350px;
-    border-radius: 20px;
-    box-shadow: 0px 35px 80px;
-    transition: 0.5s;
-    margin-left: -3px;
-    
-    
-}
-
-.card.mk1{
-    background-color: rgb(41, 41, 41);
-}
-
-.card.mk2{
-    background-color: rgb(233, 72, 32);
-}
-.card.mk3{
-    background-color: rgb(231, 52, 21);
-}
-
-.card .img-box{
-    height: auto;
-    transition: 0.5s;
-}
-
-.card:hover .img-box{
-    top: -100px;
-    scale: 0.75;
-}
-
-.card .img.box img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-.img-box2{
-    display: none;
-    margin-left: -400px;
-    margin: 10px;
-    transform:initial 15px
-}
-.card:hover .img-box2   {
-    display: block;
-    transform:initial
-}
-
-.card .content{
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-    position: absolute;
-    top: 250px;
-    width: 100%;
-    padding: 0px 30px;
-    text-align: center;
-    height: 30px;
-    overflow: hidden;
-}
-.card:hover .content{
-    top: 130px;
-    height: 250px;
-}
-.card .leia-mais{
-    background:linear-gradient(90deg,color);
-    padding: 12px;
-    color: black;
-    text-decoration: none;
-    border-radius: 8px;
 }
