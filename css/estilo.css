@@ -1,175 +1,70 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: black;
-    /* display: flex; */
-    justify-content: center;
+    background: url('https://wallpapercave.com/wp/wp2512693.jpg') no-repeat center center/cover;
+    display: flex;
     align-items: center;
     height: 100vh;
-    overflow: hidden;a{
-    text-decoration: none;
-    color: white;
-    font-size: 30px;
+    font-family: 'Staatliches', sans-serif;
 }
-.cabecario {
+
+/* Coloca os quadrados na lateral esquerda */
+.grid-container {
+    display: flex;
+    flex-direction: column; /* Empilha na vertical */
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: #661611; 
+    left: 20px; /* Mantém na lateral esquerda */
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
     padding: 10px;
-    z-index: 1000; 
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
+}
+
+.character {
+    width: 120px;
+    height: 150px;
+    background: #222;
+    border: 3px solid rgba(255, 0, 0, 0.8);
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
     display: flex;
-    justify-content: space-between;
     align-items: center;
-}
-
-.menu {
-    display: flex;
-    gap: 15px;
-}
-
-.menu a {
-    color: white;
-    text-decoration: none;
-    font-size: 20px;
-}
-
-.content {
-    margin-top: 80px; 
-}
-
-.principal{
-    display: flex;
-    justify-content: space-between;
-    justify-items: center;
-    align-items: center;
-    padding: 20px;
-    background-color: blueviolet;
-}
-.logo{
-    background-color: none;
-    background-image: url('../imagens/mortal_kombat_logo_png_2024_by_wcwjunkbox_dhgv7kw-fullview.png');
-}
-.logo:hover{
-    background-color: none;
-    animation: testeimg 1s infinite;
-}
-@keyframes testeimg {
-    0%,
-    50%{
-        transition: opacity 0.3s ease-in;
-    }
-    75%{
-        transition: opacity 0.75s ease-in;
-    }
-    100%{
-        opacity: 1;
-    }
-    
-}
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'mortal_kombat' , sans-serif;
-}
-.card{
-    display: flex;
     justify-content: center;
-    border-radius: 20px;
-    box-shadow: 0px 35px 80px;
-    transition: 0.5s;
-    margin-left: -3px;
-     
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    margin-bottom: 10px;
 }
 
-.card .img-box{
-    height: auto;
-    transition: 0.5s;
-}
-
-.card:hover .img-box{
-    top: -100px;
-    scale: 0.75;
-}
-
-.card .img.box img {
+.character img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
-.img-box2{
-    display: none;
-    margin-left: -400px;
-    margin: 10px;
-    transform:initial 15px
-}
-.card:hover .img-box2   {
-    display: block;
-    transform:initial
+
+.character:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 255, 0, 1);
+    border-color: yellow;
 }
 
-.card .content{
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-    position: absolute;
-    top: 250px;
-    width: 100%;
-    padding: 0px 30px;
-    text-align: center;
-    height: 30px;
-    overflow: hidden;
-}
-.card:hover .content{
-    top: 130px;
-    height: 250px;
-}
-.card .leia-mais{
-    background:linear-gradient(90deg,color);
-    padding: 12px;
-    color: black;
-    text-decoration: none;
-    border-radius: 8px;
-}
-
-}
-.animation-container {
+/* Nome do personagem no canto direito */
+.character::after {
+    content: attr(alt);
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #661611;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 100;
-    animation: fadeOut 3s forwards 3s;
-}
-.animation-container img {
-    width: 200px;
+    right: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: yellow;
+    font-size: 40px;
+    text-shadow: 3px 3px 10px red;
     opacity: 0;
-    animation: fadeIn 2s forwards;
+    transition: opacity 0.3s ease-in-out;
+    font-weight: bold;
+    white-space: nowrap;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.5); }
-    to { opacity: 1; transform: scale(1); }
-}
-
-@keyframes fadeOut {
-    to { opacity: 0; visibility: hidden; }
-}
-
-.content {
-    /* display: none; */
-    display: flex;
-    justify-content: space-evenly;
-    width: 100%;
-
-}
-.mks{
-    padding-bottom: 50%;
+.character:hover::after {
+    opacity: 1;
 }

@@ -3,32 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mortal Kombat</title>
-    <link rel="stylesheet" href="css/estilo2.css">    
+    <title>Mortal Kombat 9 Menu</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: url('https://wallpapercave.com/wp/wp2512693.jpg') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Staatliches', sans-serif;
+        }
+
+        .menu-container {
+            text-align: left;
+            position: absolute;
+            left: 50px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .logo img {
+            width: 300px;
+            margin-bottom: 20px;
+        }
+
+        .menu-options {
+            list-style: none;
+            padding: 0;
+        }
+
+        .menu-item {
+            font-size: 32px;
+            color: white;
+            text-transform: uppercase;
+            margin: 10px 0;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .menu-item:hover {
+            color: yellow;
+            text-shadow: 0 0 10px yellow;
+        }
+    </style>
 </head>
 <body>
-    <div class="animation-container">
-        <img src="imagens/pngimg.com - mortal_kombat_PNG65.png" alt="Mortal Kombat Logo">
+    <div class="menu-container">
+        <div class="logo"><img src="https://i.imgur.com/5Z3F3Lc.png" alt="Mortal Kombat Logo"></div>
+        <ul class="menu-options">
+            <li class="menu-item" onclick="selectOption('story')">Story Mode</li>
+            <li class="menu-item" onclick="selectOption('versus')">Versus Mode</li>
+            <li class="menu-item" onclick="selectOption('training')">Training Mode</li>
+            <li class="menu-item" onclick="selectOption('options')">Options</li>
+            <li class="menu-item" onclick="selectOption('exit')">Exit</li>
+        </ul>
     </div>
-    
-    <div class="content">
-        <div class="card">
-            <div class="img-box">
-                <nav>
-                    <ul class="logo-clicar">
-                        <li><a href="#"><img src="imagens/New Template-Photoroom.png" width="85px"></a></li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="img-box2">
-                <img src="imagens/mortal_kombat_logo_png_2024_by_wcwjunkbox_dhgv7kw-fullview.png" width="300px">
-            </div>
-            <div class="content-text">
-                <h2>Mortal Kombat</h2>
-                <p>Bem-vindo ao universo de Mortal Kombat.</p>
-                <a href="#" class="leia-mais">Veja os jogos</a>
-            </div>
-        </div>
-
+    <script>
+        function selectOption(option) {
+            alert('Selected: ' + option);
+        }
+    </script>
 </body>
 </html>
