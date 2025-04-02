@@ -3,68 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mortal Kombat</title>
-    <link rel="stylesheet" href="css/estilo3.css">    
+    <title>Portal Mortal Kombat</title>
+    <link rel="stylesheet" href="css/estilo.css">
+    <style>
+        .portal {
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+        }
+        .portal:hover {
+            transform: scale(1.05);
+        }
+        .portal.active {
+            background-color: #ffcc00;
+            transform: scale(1.1);
+        }
+    </style>
 </head>
 <body>
-
-    
-    <div class="content">
-            <div class="card mk1">
-                <div class="img-box">
-                    <nav>
-                        <ul class="logo-clicar">
-                            <li><a href="#"><img src="imagens/New Template-Photoroom.png" width="85px"></a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="img-box2">
-                    <img src="imagens/mortal_kombat_logo_png_2024_by_wcwjunkbox_dhgv7kw-fullview.png" width="300px">
-                </div>
-                <div class="content-text">
-                    <h2>Mortal Kombat</h2>
-                    <p>Bem-vindo ao universo de Mortal Kombat.</p>
-                    <a href="#" class="leia-mais">Veja os jogos</a>
-                </div>
-            </div>
-
-            <div class="card mk2">
-                <div class="img-box">
-                    <nav>
-                        <ul class="logo-clicar">
-                            <li><a href="#"><img src="imagens/New Template-Photoroom.png" width="85px"></a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="img-box2">
-                    <img src="imagens/mortal_kombat_logo_png_2024_by_wcwjunkbox_dhgv7kw-fullview.png" width="300px">
-                </div>
-                <div class="content-text">
-                    <h2>Mortal Kombat</h2>
-                    <p>Badasçdas.</p>
-                    <a href="#" class="leia-mais">Veja os jogos</a>
-                </div>
-            </div>
-
-            <div class="card mk3">
-                <div class="img-box">
-                    <nav>
-                        <ul class="logo-clicar">
-                            <li><a href="#"><img src="imagens/New Template-Photoroom.png" width="85px"></a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="img-box2">
-                    <img src="imagens/mortal_kombat_logo_png_2024_by_wcwjunkbox_dhgv7kw-fullview.png" width="300px">
-                </div>
-                <div class="content-text">
-                    <h2>Mortal Kombat</h2>
-                    <p>Badasçdas.</p>
-                    <a href="#" class="leia-mais">Veja os jogos</a>
-                </div>
-            </div>              
-        </div>        
-    </div>
-
+    <header class="cabecalho">
+        <h1>Portal Nostálgico de Mortal Kombat</h1>
+    </header>
+    <section class="portais">
+        <div class="portal" id="anos-90" onclick="togglePortal(this)">
+            <h2>Anos 90</h2>
+            <ul>
+                <li><a href="#">Mortal Kombat (1992)</a></li>
+                <li><a href="#">Mortal Kombat II (1993)</a></li>
+                <li><a href="#">Mortal Kombat 3 (1995)</a></li>
+                <li><a href="#">Ultimate Mortal Kombat 3 (1995)</a></li>
+                <li><a href="#">Mortal Kombat Trilogy (1996)</a></li>
+            </ul>
+        </div>
+        <div class="portal" id="anos-2000" onclick="togglePortal(this)">
+            <h2>Anos 2000</h2>
+            <ul>
+                <li><a href="#">Mortal Kombat 4 (1997)</a></li>
+                <li><a href="#">Mortal Kombat Gold (1999)</a></li>
+                <li><a href="#">Mortal Kombat: Deadly Alliance (2002)</a></li>
+                <li><a href="#">Mortal Kombat: Deception (2004)</a></li>
+                <li><a href="#">Mortal Kombat: Armageddon (2006)</a></li>
+                <li><a href="#">Mortal Kombat vs DC Universe (2008)</a></li>
+            </ul>
+        </div>
+        <div class="portal" id="anos-2010" onclick="togglePortal(this)">
+            <h2>Anos 2010</h2>
+            <ul>
+                <li><a href="#">Mortal Kombat (2011)</a></li>
+                <li><a href="#">Mortal Kombat X (2015)</a></li>
+                <li><a href="#">Mortal Kombat 11 (2019)</a></li>
+            </ul>
+        </div>
+        <div class="portal" id="anos-2020" onclick="togglePortal(this)">
+            <h2>Anos 2020</h2>
+            <ul>
+                <li><a href="#">Mortal Kombat 1 (2023)</a></li>
+            </ul>
+        </div>
+    </section>
+    <script>
+        function togglePortal(element) {
+            document.querySelectorAll('.portal').forEach(portal => portal.classList.remove('active'));
+            element.classList.add('active');
+        }
+    </script>
 </body>
 </html>

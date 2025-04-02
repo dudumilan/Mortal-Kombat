@@ -1,4 +1,5 @@
 body {
+    background-image: url("../imagens/mortal\ kombat\ imagem\ de\ fundo.webp");
     margin: 0;
     padding: 0;
     background: url('https://wallpapercave.com/wp/wp2512693.jpg') no-repeat center center/cover;
@@ -68,3 +69,7 @@ body {
 .character:hover::after {
     opacity: 1;
 }
+        #anos-90 { background-image: url('imagens/mk90s.jpg'); }
+        #anos-2000 { background-image: url('imagens/mk2000s.jpg'); }
+        #anos-2010 { background-image: url('imagens/mk2010s.jpg'); }
+        #anos-2020 { background-image: url('imagens/mk2020s.jpg'); }

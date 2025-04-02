@@ -92,6 +92,17 @@ a{
     box-sizing: border-box;
     font-family: 'mortal_kombat' , sans-serif;
 }
+.portal {
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+.portal:hover {
+    transform: scale(1.05);
+}
+.portal.active {
+    background-color: #ffcc00;
+    transform: scale(1.1);
+}
 .card{
     display: flex;
     justify-content: center;
