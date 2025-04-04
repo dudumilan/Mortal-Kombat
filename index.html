@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap">
     <link rel="stylesheet" href="css/estilo.css">
 </head>
-<body>
+<body onclick="changeBackground();">
     <div class="grid-container">
         <div class="character"><img src="https://i.imgur.com/8G6n3N3.png" alt="Scorpion"></div>
         <div class="character"><img src="https://i.imgur.com/Xo3JZED.png" alt="Sub-Zero"></div>
@@ -15,5 +15,26 @@
         <div class="character"><img src="https://i.imgur.com/LZt7b3O.png" alt="Raiden"></div>
         <div class="character"><img src="https://i.imgur.com/WcXhZ7M.png" alt="Mileena"></div>
     </div>
+    <script>
+        const images = ['Mortal_Kombat_9_Intro_Main_Menu_Theme_Song_PS3_1080p.gif', 'Xt-Zms.gif'];
+      
+        let currentIndex = 0;
+        //document.body.style.backgroundImage = "url('imagens/Mortal_Kombat_9_Intro_Main_Menu_Theme_Song_PS3_1080p.gif')";
+        document.body.style.backgroundImage = `url('./imagens/${images[currentIndex]}') `;
+        
+        console.log(document.body.style.backgroundImage = `url('imagens/${images[currentIndex]}')`);
+        //alert(`url('./imagens/${images[currentIndex]}') no-repeat center center/cover`);
+
+        function changeBackground() {
+            if (currentIndex==0){
+                currentIndex=1;
+            }else{
+                currentIndex=0;
+            }
+     
+            document.body.style.backgroundImage = `url('./imagens/${images[currentIndex]}') `;
+
+        }
+    </script>
 </body>
 </html>

@@ -1,22 +1,33 @@
-body {
+        body {
             margin: 0;
             padding: 0;
             background: url('../imagens/Vídeo\ sem\ título\ ‐\ Feito\ com\ o\ Clipchamp.gif') no-repeat center center/cover;
             display: flex;
-            justify-content: center;
-            align-items: center;
+            align-items: end;
             height: 100vh;
             font-family: 'Staatliches', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://i.imgur.com/8G6n3N3.png') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            color: white;
+            cursor: pointer;
+            transition: background 0.5s ease-in-out;
         }
 
         .grid-container {
-            display: grid;
-            grid-template-columns: repeat(5, 120px);
-            grid-gap: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
             background: rgba(0, 0, 0, 0.5);
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
+            margin-left: 30px;
         }
 
         .character {
@@ -43,4 +54,16 @@ body {
             transform: scale(1.1);
             box-shadow: 0 0 20px rgba(255, 255, 0, 1);
             border-color: yellow;
+        }
+        .fundo {
+            transition: background 0.5s ease-in-out;
+        }
+        
+        .fundo:hover {
+            background: rgba(255, 255, 0, 0.7);
+        }
+        h1 {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
         }
