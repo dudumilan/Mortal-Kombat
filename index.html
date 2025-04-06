@@ -8,32 +8,25 @@
     <link rel="stylesheet" href="css/estilo.css">
 </head>
 <body onclick="changeBackground();">
-    <div class="grid-container">
-        <div class="character"><img src="https://i.imgur.com/8G6n3N3.png" alt="Scorpion"></div>
-        <div class="character"><img src="https://i.imgur.com/Xo3JZED.png" alt="Sub-Zero"></div>
-        <div class="character"><img src="https://i.imgur.com/U2H9Cz7.png" alt="Liu Kang"></div>
-        <div class="character"><img src="https://i.imgur.com/LZt7b3O.png" alt="Raiden"></div>
-        <div class="character"><img src="https://i.imgur.com/WcXhZ7M.png" alt="Mileena"></div>
+    <div class="menu-container">
+        <div class="menu-item selected">1 JOGADOR</div>
+        <div class="menu-item">KOMBAT</div>
+        <div class="menu-item">MODO HISTÓRIA</div>
+        <div class="menu-item">TORRE DOS DESAFIOS</div>
+        <div class="menu-item">TREINAMENTO</div>
+        <div class="menu-item">ONLINE</div>
+        <div class="menu-item">EXTRAS</div>
+        <div class="menu-item">OPÇÕES</div>
     </div>
+
     <script>
         const images = ['Mortal_Kombat_9_Intro_Main_Menu_Theme_Song_PS3_1080p.gif', 'Xt-Zms.gif'];
-      
         let currentIndex = 0;
-        //document.body.style.backgroundImage = "url('imagens/Mortal_Kombat_9_Intro_Main_Menu_Theme_Song_PS3_1080p.gif')";
-        document.body.style.backgroundImage = `url('./imagens/${images[currentIndex]}') `;
-        
-        console.log(document.body.style.backgroundImage = `url('imagens/${images[currentIndex]}')`);
-        //alert(`url('./imagens/${images[currentIndex]}') no-repeat center center/cover`);
+        document.body.style.backgroundImage = `url('./imagens/${images[currentIndex]}')`;
 
         function changeBackground() {
-            if (currentIndex==0){
-                currentIndex=1;
-            }else{
-                currentIndex=0;
-            }
-     
-            document.body.style.backgroundImage = `url('./imagens/${images[currentIndex]}') `;
-
+            currentIndex = currentIndex === 0 ? 1 : 0;
+            document.body.style.backgroundImage = `url('./imagens/${images[currentIndex]}')`;
         }
     </script>
 </body>

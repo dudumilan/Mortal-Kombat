@@ -3,106 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mortal Kombat</title>
+    <title>MK9 Interface</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap">
     <link rel="stylesheet" href="css/estilo.css">
     <style>
         body {
             margin: 0;
             padding: 0;
-            background-color: black;
+            background: url('https://i.imgur.com/8G6n3N3.png') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            font-family: 'Staatliches', sans-serif;
+            color: white;
+            cursor: pointer;
+            transition: background 0.5s ease-in-out;
+        }
+
+        .menu-container {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden;
-            font-family: 'mortal_kombat', sans-serif;
+            gap: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
+            margin-left: 30px;
         }
-        .cabecalho {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: #661611;
-            padding: 10px;
-            z-index: 1000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .portais {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-top: 80px;
-            gap: 20px;
-            width: 90%;
-        }
-        .portal {
+
+        .menu-item {
+            font-size: 28px;
+            color: #aa3a2d;
+            text-shadow: 1px 1px 2px black;
+            transition: all 0.3s ease-in-out;
             cursor: pointer;
-            transition: transform 0.5s ease-in-out, opacity 0.5s;
-            transform: scale(0);
-            opacity: 0;
-            background-size: cover;
-            background-position: center;
-            width: 200px;
-            height: 300px;
-            border-radius: 50%;
-            color: white;
-            text-align: center;
-            box-shadow: 0px 35px 80px rgba(0, 0, 0, 0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 18px;
         }
-        .portal.show {
-            transform: scale(1);
-            opacity: 1;
+
+        .menu-item:hover,
+        .menu-item.selected {
+            color: #ffff99;
+            text-shadow: 2px 2px 4px red;
         }
-        .portal:hover {
-            transform: scale(1.1);
-        }
-        .portal.active {
-            border: 3px solid #ffcc00;
-            transform: scale(1.2);
-        }
-        #anos-90 { background-image: url('imagens/mk90s.jpg'); }
-        #anos-2000 { background-image: url('imagens/mk2000s.jpg'); }
-        #anos-2010 { background-image: url('imagens/mk2010s.jpg'); }
-        #anos-2020 { background-image: url('imagens/mk2020s.jpg'); }
     </style>
 </head>
-<body>
-    <header class="cabecalho">
-        <h1>Mortal Kombat</h1>
-    </header>
-    <section class="portais">
-        <div class="portal show" id="anos-90" onclick="togglePortal(this)">
-            <h2>Anos 90</h2>
-        </div>
-        <div class="portal show" id="anos-2000" onclick="togglePortal(this)">
-            <h2>Anos 2000</h2>
-        </div>
-        <div class="portal show" id="anos-2010" onclick="togglePortal(this)">
-            <h2>Anos 2010</h2>
-        </div>
-        <div class="portal show" id="anos-2020" onclick="togglePortal(this)">
-            <h2>Anos 2020</h2>
-        </div>
-    </section>
+<body onclick="changeBackground();">
+    <div class="menu-container">
+        <div class="menu-item selected">1 JOGADOR</div>
+        <div class="menu-item">KOMBAT</div>
+        <div class="menu-item">MODO HISTÓRIA</div>
+        <div class="menu-item">TORRE DOS DESAFIOS</div>
+        <div class="menu-item">TREINAMENTO</div>
+        <div class="menu-item">ONLINE</div>
+        <div class="menu-item">EXTRAS</div>
+        <div class="menu-item">OPÇÕES</div>
+    </div>
+
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            setTimeout(() => {
-                document.querySelectorAll('.portal').forEach(portal => {
-                    portal.classList.add('show');
-                });
-            }, 100);
-        });
-        
-        function togglePortal(element) {
-            document.querySelectorAll('.portal').forEach(portal => portal.classList.remove('active'));
-            element.classList.add('active');
+        const images = ['Mortal_Kombat_9_Intro_Main_Menu_Theme_Song_PS3_1080p.gif', 'Xt-Zms.gif'];
+        let currentIndex = 0;
+        document.body.style.backgroundImage = `url('./imagens/${images[currentIndex]}')`;
+
+        function changeBackground() {
+            currentIndex = currentIndex === 0 ? 1 : 0;
+            document.body.style.backgroundImage = `url('./imagens/${images[currentIndex]}')`;
         }
     </script>
 </body>
