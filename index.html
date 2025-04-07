@@ -8,26 +8,72 @@
     <link rel="stylesheet" href="css/estilo.css">
 </head>
 <body onclick="changeBackground();">
+    <video id="bgVideo" class="bg-video" autoplay loop muted>
+        <source src="./videos/mortalkombatfundo1.mp4" type="video/mp4">
+        Seu navegador não suporta vídeo em HTML5.
+    </video>
     <div class="menu-container">
-        <div class="menu-item selected">1 JOGADOR</div>
-        <div class="menu-item">KOMBAT</div>
-        <div class="menu-item">MODO HISTÓRIA</div>
+        <div class="menu-item fixed-selected"><span class="menu-text">JOGADOR</span></div>
+
+        <div class="menu-item selected"></div>
+        <div class="menu-item">PERSONAGENS</div>
+        <div class="menu-item">HISTORIA</div>
         <div class="menu-item">TORRE DOS DESAFIOS</div>
         <div class="menu-item">TREINAMENTO</div>
         <div class="menu-item">ONLINE</div>
         <div class="menu-item">EXTRAS</div>
-        <div class="menu-item">OPÇÕES</div>
+        <div class="menu-item">SAIR</div>
     </div>
 
-    <script>
-        const images = ['Mortal_Kombat_9_Intro_Main_Menu_Theme_Song_PS3_1080p.gif', 'Xt-Zms.gif'];
-        let currentIndex = 0;
-        document.body.style.backgroundImage = `url('./imagens/${images[currentIndex]}')`;
 
-        function changeBackground() {
-            currentIndex = currentIndex === 0 ? 1 : 0;
-            document.body.style.backgroundImage = `url('./imagens/${images[currentIndex]}')`;
+<script>
+    const menuItems = document.querySelectorAll('.menu-item');
+    let selectedIndex = 0;
+    
+    function updateSelection() {
+    menuItems.forEach((item, index) => {
+        if (!item.classList.contains('fixed-selected')) {
+            item.classList.toggle('selected', index === selectedIndex);
         }
-    </script>
+    });
+}
+
+    
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowDown') {
+            selectedIndex = (selectedIndex + 1) % menuItems.length;
+            updateSelection();
+        } else if (e.key === 'ArrowUp') {
+            selectedIndex = (selectedIndex - 1 + menuItems.length) % menuItems.length;
+            updateSelection();
+        } else if (e.key === 'Enter') {
+            const selectedItem = menuItems[selectedIndex].textContent.trim();
+            
+            alert(`Você selecionou: ${selectedItem}`);
+                
+            
+            }
+        });
+    
+
+    updateSelection(); 
+
+        const videos = ['mortalkombatfundo1.mp4', 'fundo2.mp4'];
+        let currentIndex = 0;
+        let hasChanged = false; 
+      
+        function changeBackground() {
+          if (hasChanged) return; 
+      
+          currentIndex = 1; 
+          const bgVideo = document.getElementById('bgVideo');
+          bgVideo.src = `videos/${videos[currentIndex]}`;
+          bgVideo.load();
+          bgVideo.play();
+      
+          hasChanged = true;
+        }
+      </script>
+      
 </body>
 </html>
