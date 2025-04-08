@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Seleção de Personagens</title>
+    <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/personagens.css">
+    <style>
+        .personagem-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            gap: 40px;
+            padding: 30px;
+            font-family: 'Staatliches', cursive;
+        }
+
+        .personagem-destaque {
+            text-align: center;
+        }
+
+        #personagem-img {
+            width: 300px;
+            border: 4px solid red;
+        }
+
+        #personagem-nome {
+            margin-top: 10px;
+            font-size: 2em;
+            color: white;
+        }
+
+        .grade-personagens {
+            display: grid;
+            grid-template-columns: repeat(7, 80px);
+            grid-template-rows: repeat(5, 80px);
+            gap: 10px;
+        }
+
+        .personagem {
+            width: 80px;
+            height: 80px;
+            border: 2px solid #555;
+            background-color: #222;
+            padding: 2px;
+            box-sizing: border-box;
+            transition: border 0.2s;
+        }
+
+        .personagem img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .personagem.selecionado {
+            border: 3px solid gold;
+        }
+
+        body {
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="personagem-container">
+        <div class="personagem-destaque">
+            <img id="personagem-img" src="imagens/scorpion.png" alt="Personagem Selecionado">
+            <div id="personagem-nome">SCORPION</div>
+        </div>
+
+        <div class="grade-personagens" id="grade">
+            <!-- Exemplo de personagem -->
+            <div class="personagem selecionado" data-nome="SCORPION" data-img="imagens/scorpion3.png">
+                <img src="imagens/scorpion.png" alt="Scorpion">
+            </div>
+            <div class="personagem" data-nome="LIU KANG" data-img="imagens/liukang3.png">
+                <img src="imagens/liukang1.png" alt="Liu Kang">
+            </div>
+            <div class="personagem" data-nome="RAIDEN" data-img="imagens/raiden3.png">
+                <img src="imagens/raiden1.png" alt="Raiden">
+            </div>
+            <div class="personagem selecionado" data-nome="SUB-ZERO" data-img="imagens/subzero3.png">
+                <img src="imagens/subzero1.png" alt="Sub-zero">
+            </div>
+            <div class="personagem selecionado" data-nome="NOOB-SAIBOT" data-img="imagens/noob3.png">
+                <img src="imagens/noob1.png" alt="Noob-saibot">
+            </div>
+            <div class="personagem selecionado" data-nome="JONNYCAGE" data-img="imagens/jonnycage3.png">
+                <img src="imagens/jonnycage1.png" alt="Jonnycage">
+            </div>
+            <div class="personagem selecionado" data-nome="SHANG-SUNG" data-img="imagens/shangsung3.png">
+                <img src="imagens/shangsung1.png" alt="Shang-sung">
+            </div>
+            
+            
+        </div>
+    </div>
+
+    <script>
+        const personagens = document.querySelectorAll('.personagem');
+        const personagemImg = document.getElementById('personagem-img');
+        const personagemNome = document.getElementById('personagem-nome');
+        const colunas = 7;
+
+        let selectedIndex = 0;
+
+        function updatePersonagem(index) {
+            personagens.forEach(p => p.classList.remove('selecionado'));
+            const personagem = personagens[index];
+            personagem.classList.add('selecionado');
+            personagemImg.src = personagem.dataset.img;
+            personagemNome.textContent = personagem.dataset.nome;
+        }
+
+        personagens.forEach((p, i) => {
+            p.addEventListener('click', () => {
+                selectedIndex = i;
+                updatePersonagem(i);
+            });
+        });
+
+        document.addEventListener('keydown', (e) => {
+            const total = personagens.length;
+            const linha = Math.floor(selectedIndex / colunas);
+            const coluna = selectedIndex % colunas;
+
+            if (e.key === 'ArrowRight') {
+                if (coluna < colunas - 1 && selectedIndex + 1 < total) selectedIndex++;
+            } else if (e.key === 'ArrowLeft') {
+                if (coluna > 0) selectedIndex--;
+            } else if (e.key === 'ArrowDown') {
+                if (selectedIndex + colunas < total) selectedIndex += colunas;
+            } else if (e.key === 'ArrowUp') {
+                if (selectedIndex - colunas >= 0) selectedIndex -= colunas;
+            } else if (e.key === 'Enter') {
+                const personagem = personagens[selectedIndex];
+                alert(`Você selecionou: ${personagem.dataset.nome}`);
+            }
+
+            updatePersonagem(selectedIndex);
+        });
+    </script>
+</body>
+</html>

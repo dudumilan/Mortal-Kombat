@@ -1,20 +1,29 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>MK9 Interface</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap">
     <link rel="stylesheet" href="css/estilo.css">
 </head>
 <body onclick="changeBackground();">
-    <video id="bgVideo" class="bg-video" autoplay loop muted>
+
+    <video id="bgVideo" class="bg-video" autoplay muted>
         <source src="./videos/mortalkombatfundo1.mp4" type="video/mp4">
         Seu navegador não suporta vídeo em HTML5.
     </video>
-    <div class="menu-container">
-        <div class="menu-item fixed-selected"><span class="menu-text">JOGADOR</span></div>
 
+    <!-- Sons -->
+    <audio id="sfx-navegar" src="audios/troca.mp3" preload="auto"></audio>
+    <audio id="sfx-selecionar" src="sfx/selecionar.mp3" preload="auto"></audio>
+    <audio id="menu-appear-sfx" src="sfx/menu-appear.mp3" preload="auto"></audio>
+
+    <!-- Áudio de fundo -->
+    <audio id="bg-audio-1" src="audios/audio de fundo1.mp3"></audio>
+    <audio id="bg-audio-2" src="audios/audio de fundo2.mp3"></audio>
+
+    <div class="menu-container">
         <div class="menu-item selected"></div>
         <div class="menu-item">PERSONAGENS</div>
         <div class="menu-item">HISTORIA</div>
@@ -25,55 +34,119 @@
         <div class="menu-item">SAIR</div>
     </div>
 
+    <script>
+        const menuItems = document.querySelectorAll('.menu-item');
+        const bgVideo = document.getElementById('bgVideo');
+        const menuContainer = document.querySelector('.menu-container');
 
-<script>
-    const menuItems = document.querySelectorAll('.menu-item');
-    let selectedIndex = 0;
-    
-    function updateSelection() {
-    menuItems.forEach((item, index) => {
-        if (!item.classList.contains('fixed-selected')) {
-            item.classList.toggle('selected', index === selectedIndex);
+        const sfxNavegar = document.getElementById('sfx-navegar');
+        const sfxSelecionar = document.getElementById('sfx-selecionar');
+        const sfxMenuAppear = document.getElementById('menu-appear-sfx');
+        const bgAudio1 = document.getElementById('bg-audio-1');
+        const bgAudio2 = document.getElementById('bg-audio-2');
+
+        let selectedIndex = 0;
+        let hasChanged = false;
+
+        function updateSelection() {
+            menuItems.forEach((item, index) => {
+                if (!item.classList.contains('fixed-selected')) {
+                    item.classList.toggle('selected', index === selectedIndex);
+                }
+            });
         }
-    });
-}
 
-    
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowDown') {
-            selectedIndex = (selectedIndex + 1) % menuItems.length;
-            updateSelection();
-        } else if (e.key === 'ArrowUp') {
-            selectedIndex = (selectedIndex - 1 + menuItems.length) % menuItems.length;
-            updateSelection();
-        } else if (e.key === 'Enter') {
-            const selectedItem = menuItems[selectedIndex].textContent.trim();
-            
-            alert(`Você selecionou: ${selectedItem}`);
-                
-            
+        function changeBackground() {
+            if (hasChanged) return;
+
+            hasChanged = true;
+
+            // Troca o vídeo de fundo
+            const newSource = document.createElement('source');
+            newSource.src = 'videos/fundo2.mp4';
+            newSource.type = 'video/mp4';
+            bgVideo.innerHTML = '';
+            bgVideo.appendChild(newSource);
+            bgVideo.loop = false;
+            bgVideo.load();
+            bgVideo.play();
+
+            // Exibe menu
+            menuContainer.classList.add('visible');
+
+            // Toca som de entrada
+            sfxMenuAppear.currentTime = 0;
+            sfxMenuAppear.play();
+
+            // Para o primeiro áudio e toca o segundo
+            bgAudio1.pause();
+            bgAudio2.currentTime = 0;
+            bgAudio2.play();
+        }
+
+        document.body.addEventListener('click', changeBackground);
+
+        document.addEventListener('keydown', (e) => {
+            if (!hasChanged) return;
+
+            let prevIndex = selectedIndex;
+
+            if (e.key === 'ArrowDown') {
+                selectedIndex = (selectedIndex + 1) % menuItems.length;
+            } else if (e.key === 'ArrowUp') {
+                selectedIndex = (selectedIndex - 1 + menuItems.length) % menuItems.length;
+            } else if (e.key === 'Enter') {
+                const selectedItem = menuItems[selectedIndex].textContent.trim().toLowerCase().replace(/ /g, '');
+
+                if (!selectedItem) return;
+
+                sfxSelecionar.currentTime = 0;
+                sfxSelecionar.play();
+
+                setTimeout(() => {
+                    window.location.href = `${selectedItem}.html`;
+                }, 300); // pequeno delay para o som terminar
+            }
+
+            if (prevIndex !== selectedIndex) {
+                updateSelection();
+                sfxNavegar.currentTime = 0;
+                sfxNavegar.play();
             }
         });
-    
 
-    updateSelection(); 
+        updateSelection();
 
-        const videos = ['mortalkombatfundo1.mp4', 'fundo2.mp4'];
-        let currentIndex = 0;
-        let hasChanged = false; 
-      
-        function changeBackground() {
-          if (hasChanged) return; 
-      
-          currentIndex = 1; 
-          const bgVideo = document.getElementById('bgVideo');
-          bgVideo.src = `videos/${videos[currentIndex]}`;
-          bgVideo.load();
-          bgVideo.play();
-      
-          hasChanged = true;
+        // Toca o primeiro áudio de fundo assim que a página carrega (se permitido)
+        window.addEventListener('DOMContentLoaded', () => {
+            const playAudio = () => {
+                bgAudio1.volume = 0.5;
+                const playPromise = bgAudio1.play();
+
+                if (playPromise !== undefined) {
+                    playPromise.catch((error) => {
+                        console.warn('Autoplay bloqueado. Tente clicar na tela para ativar o som.');
+                    });
+                }
+            };
+
+            playAudio();
+        });
+
+        bgAudio1.loop = false;
+        bgAudio1.volume = 0.5;
+
+        function startAudio() {
+            bgAudio1.play().catch((err) => {
+                console.warn("Autoplay bloqueado:", err);
+            });
+
+            document.removeEventListener('click', startAudio);
+            document.removeEventListener('keydown', startAudio);
         }
-      </script>
-      
+
+        document.addEventListener('click', startAudio);
+        document.addEventListener('keydown', startAudio);
+    </script>
 </body>
 </html>
