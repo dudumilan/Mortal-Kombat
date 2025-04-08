@@ -4,11 +4,15 @@
   <meta charset="UTF-8">
   <title>Torre de Desafios MK9</title>
   <style> 
+  @font-face {
+    font-family: 'MKTitle';
+    src: url('fonts/MKTitle.ttf') format('truetype');
+  }
     body {
       margin: 0;
       background: url('img/fundo-torre.jpg') no-repeat center center fixed;
       background-size: cover;
-      font-family: Arial, sans-serif;
+      font-family: 'MKTitle.ttf';
       overflow: hidden;
       color: white;
       background-image: url(../Mortal-Kombat/imagens/exoterra.webp);
@@ -38,7 +42,7 @@
       text-align: center;
       line-height: 90px;
       font-size: 22px;
-      color: #fff;
+      color: #ffffff;
       transition: all 0.3s ease;
     }
     
@@ -55,7 +59,7 @@
     
     @keyframes pulse {
       0% { transform: scale(1); }
-      50% { transform: scale(1.2); background: #fff; color: #000; }
+      50% { transform: scale(1.2); background: #fff; color: #910000; }
       100% { transform: scale(1.05); }
     }
     .personagem-especial {
