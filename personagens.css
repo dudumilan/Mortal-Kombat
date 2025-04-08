@@ -38,7 +38,7 @@ body {
 }
 
 .grade-personagens {
-    display: table-column;
+    display: grid;
     grid-template-columns: repeat(3, 80px);
     gap: 15px;
 }
