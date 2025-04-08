@@ -1,147 +1,201 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Seleção de Personagens</title>
-    <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/personagens.css">
-    <style>
-        .personagem-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: row;
-            gap: 40px;
-            padding: 30px;
-            font-family: 'Staatliches', cursive;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Seleção de Personagens</title>
+  <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+  <style>
+    @keyframes fadeSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
-        .personagem-destaque {
-            text-align: center;
-        }
+.personagem-container {
+    animation: fadeSlideIn 0.8s ease-out forwards;
+    opacity: 0;
+}
 
-        #personagem-img {
-            width: 300px;
-            border: 4px solid red;
-        }
+.grade-personagens .personagem {
+    opacity: 0;
+    animation: fadeSlideIn 0.6s ease forwards;
+}
 
-        #personagem-nome {
-            margin-top: 10px;
-            font-size: 2em;
-            color: white;
-        }
+.grade-personagens .personagem:nth-child(1) { animation-delay: 0.2s; }
+.grade-personagens .personagem:nth-child(2) { animation-delay: 0.3s; }
+.grade-personagens .personagem:nth-child(3) { animation-delay: 0.4s; }
+.grade-personagens .personagem:nth-child(4) { animation-delay: 0.5s; }
+.grade-personagens .personagem:nth-child(5) { animation-delay: 0.6s; }
+.grade-personagens .personagem:nth-child(6) { animation-delay: 0.7s; }
+.grade-personagens .personagem:nth-child(7) { animation-delay: 0.8s; }
+.grade-personagens .personagem:nth-child(8) { animation-delay: 0.9s; }
+.grade-personagens .personagem:nth-child(9) { animation-delay: 1.0s; }
+.grade-personagens .personagem:nth-child(10) { animation-delay: 1.1s; }
+    body {
+      background: black;
+      color: white;
+      font-family: 'Staatliches', cursive;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      overflow: hidden;
+    }
 
-        .grade-personagens {
-            display: grid;
-            grid-template-columns: repeat(7, 80px);
-            grid-template-rows: repeat(5, 80px);
-            gap: 10px;
-        }
+    .personagem-container {
+      display: flex;
+      width: 100%;
+      max-width: 1200px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 40px;
+      gap: 40px;
+    }
 
-        .personagem {
-            width: 80px;
-            height: 80px;
-            border: 2px solid #555;
-            background-color: #222;
-            padding: 2px;
-            box-sizing: border-box;
-            transition: border 0.2s;
-        }
+    .personagem-destaque {
+      text-align: center;
+      flex-shrink: 0;
+    }
 
-        .personagem img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+    #personagem-img {
+      width: 350px;
+      height: auto;
+      border: 4px solid red;
+      transition: transform 0.3s ease;
+    }
 
-        .personagem.selecionado {
-            border: 3px solid gold;
-        }
+    #personagem-img.animate {
+      transform: scale(1.1);
+    }
 
-        body {
-            background-color: black;
-        }
-    </style>
+    #personagem-nome {
+      margin-top: 15px;
+      font-size: 32px;
+      color: orange;
+      text-shadow: 2px 2px black;
+    }
+
+    .grade-personagens {
+      display: grid;
+      grid-template-columns: repeat(3, 100px);
+      grid-template-rows: repeat(3, 100px);
+      gap: 20px;
+      justify-content: center;
+      align-content: center;
+    }
+
+    .personagem {
+      width: 100px;
+      height: 100px;
+      border: 2px solid transparent;
+      background-color: #222;
+      padding: 4px;
+      box-sizing: border-box;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .personagem:hover {
+      transform: scale(1.1);
+      border-color: orange;
+    }
+
+    .personagem.selecionado {
+      border: 2px solid red;
+    }
+
+    .personagem img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
 </head>
-<body>
-    <div class="personagem-container">
-        <div class="personagem-destaque">
-            <img id="personagem-img" src="imagens/scorpion.png" alt="Personagem Selecionado">
-            <div id="personagem-nome">SCORPION</div>
-        </div>
+<body onload="document.querySelector('.personagem-container').style.opacity = '1'">
 
-        <div class="grade-personagens" id="grade">
-            <!-- Exemplo de personagem -->
-            <div class="personagem selecionado" data-nome="SCORPION" data-img="imagens/scorpion3.png">
-                <img src="imagens/scorpion.png" alt="Scorpion">
-            </div>
-            <div class="personagem" data-nome="LIU KANG" data-img="imagens/liukang3.png">
-                <img src="imagens/liukang1.png" alt="Liu Kang">
-            </div>
-            <div class="personagem" data-nome="RAIDEN" data-img="imagens/raiden3.png">
-                <img src="imagens/raiden1.png" alt="Raiden">
-            </div>
-            <div class="personagem selecionado" data-nome="SUB-ZERO" data-img="imagens/subzero3.png">
-                <img src="imagens/subzero1.png" alt="Sub-zero">
-            </div>
-            <div class="personagem selecionado" data-nome="NOOB-SAIBOT" data-img="imagens/noob3.png">
-                <img src="imagens/noob1.png" alt="Noob-saibot">
-            </div>
-            <div class="personagem selecionado" data-nome="JONNYCAGE" data-img="imagens/jonnycage3.png">
-                <img src="imagens/jonnycage1.png" alt="Jonnycage">
-            </div>
-            <div class="personagem selecionado" data-nome="SHANG-SUNG" data-img="imagens/shangsung3.png">
-                <img src="imagens/shangsung1.png" alt="Shang-sung">
-            </div>
-            
-            
-        </div>
+  <div class="personagem-container">
+    <div class="personagem-destaque">
+      <img id="personagem-img" src="imagens/mortalkombat logo.png" alt="Personagem Selecionado">
+      <div id="personagem-nome">Personagens</div>
     </div>
 
-    <script>
-        const personagens = document.querySelectorAll('.personagem');
-        const personagemImg = document.getElementById('personagem-img');
-        const personagemNome = document.getElementById('personagem-nome');
-        const colunas = 7;
+    <div class="grade-personagens" id="grade">
+      <div class="personagem selecionado" data-nome="SCORPION" data-img="imagens/scorpion3.png">
+        <img src="imagens/scorpion.png" alt="Scorpion">
+      </div>
+      <div class="personagem" data-nome="LIU KANG" data-img="imagens/liukang3.png">
+        <img src="imagens/liukang1.png" alt="Liu Kang">
+      </div>
+      <div class="personagem" data-nome="RAIDEN" data-img="imagens/raiden3.png">
+        <img src="imagens/raiden1.png" alt="Raiden">
+      </div>
+      <div class="personagem" data-nome="SUB-ZERO" data-img="imagens/subzero3.png">
+        <img src="imagens/subzero1.png" alt="Sub-zero">
+      </div>
+      <div class="personagem" data-nome="NOOB-SAIBOT" data-img="imagens/noob3.png">
+        <img src="imagens/noob1.png" alt="Noob-saibot">
+      </div>
+      <div class="personagem" data-nome="JONNY CAGE" data-img="imagens/jonnycage3.png">
+        <img src="imagens/jonnycage1.png" alt="Jonnycage">
+      </div>
+      <div class="personagem" data-nome="SHANG TSUNG" data-img="imagens/shangsung3.png">
+        <img src="imagens/shangsung1.png" alt="Shang Tsung">
+      </div>
+    </div>
+  </div>
 
-        let selectedIndex = 0;
+  <script>
+    const personagens = document.querySelectorAll('.personagem');
+    const personagemImg = document.getElementById('personagem-img');
+    const personagemNome = document.getElementById('personagem-nome');
+    const colunas = 3;
 
-        function updatePersonagem(index) {
-            personagens.forEach(p => p.classList.remove('selecionado'));
-            const personagem = personagens[index];
-            personagem.classList.add('selecionado');
-            personagemImg.src = personagem.dataset.img;
-            personagemNome.textContent = personagem.dataset.nome;
-        }
+    let selectedIndex = 0;
 
-        personagens.forEach((p, i) => {
-            p.addEventListener('click', () => {
-                selectedIndex = i;
-                updatePersonagem(i);
-            });
-        });
+    function updatePersonagem(index) {
+      personagens.forEach(p => p.classList.remove('selecionado'));
+      const personagem = personagens[index];
+      personagem.classList.add('selecionado');
+      personagemImg.src = personagem.dataset.img;
+      personagemNome.textContent = personagem.dataset.nome;
+    }
 
-        document.addEventListener('keydown', (e) => {
-            const total = personagens.length;
-            const linha = Math.floor(selectedIndex / colunas);
-            const coluna = selectedIndex % colunas;
+    personagens.forEach((p, i) => {
+      p.addEventListener('click', () => {
+        selectedIndex = i;
+        updatePersonagem(i);
+      });
+    });
 
-            if (e.key === 'ArrowRight') {
-                if (coluna < colunas - 1 && selectedIndex + 1 < total) selectedIndex++;
-            } else if (e.key === 'ArrowLeft') {
-                if (coluna > 0) selectedIndex--;
-            } else if (e.key === 'ArrowDown') {
-                if (selectedIndex + colunas < total) selectedIndex += colunas;
-            } else if (e.key === 'ArrowUp') {
-                if (selectedIndex - colunas >= 0) selectedIndex -= colunas;
-            } else if (e.key === 'Enter') {
-                const personagem = personagens[selectedIndex];
-                alert(`Você selecionou: ${personagem.dataset.nome}`);
-            }
+    document.addEventListener('keydown', (e) => {
+      const total = personagens.length;
+      const linha = Math.floor(selectedIndex / colunas);
+      const coluna = selectedIndex % colunas;
 
-            updatePersonagem(selectedIndex);
-        });
-    </script>
+      if (e.key === 'ArrowRight') {
+        if (coluna < colunas - 1 && selectedIndex + 1 < total) selectedIndex++;
+      } else if (e.key === 'ArrowLeft') {
+        if (coluna > 0) selectedIndex--;
+      } else if (e.key === 'ArrowDown') {
+        if (selectedIndex + colunas < total) selectedIndex += colunas;
+      } else if (e.key === 'ArrowUp') {
+        if (selectedIndex - colunas >= 0) selectedIndex -= colunas;
+      } else if (e.key === 'Enter') {
+        const personagem = personagens[selectedIndex];
+        alert(`Você selecionou: ${personagem.dataset.nome}`);
+      }
+
+      updatePersonagem(selectedIndex);
+    });
+
+  </script>
 </body>
 </html>

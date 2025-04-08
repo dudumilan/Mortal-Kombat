@@ -1,139 +1,110 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>MK9 Interface</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap">
-    <link rel="stylesheet" href="css/estilo.css">
+  <meta charset="UTF-8">
+  <title>Torre de Desafios</title>
+  <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: 'Staatliches', cursive;
+      text-align: center;
+    }
+
+    h1 {
+      color: red;
+      font-size: 48px;
+      margin-top: 40px;
+    }
+
+    .torre {
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: center;
+      gap: 15px;
+      margin-top: 40px;
+    }
+
+    .fase {
+      width: 200px;
+      height: 60px;
+      background: #222;
+      border: 2px solid red;
+      color: orange;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .fase:hover {
+      transform: scale(1.05);
+      background: crimson;
+    }
+  </style>
 </head>
-<body onclick="changeBackground();">
+<body>
+  <h1>Torre da História</h1>
+  <div class="torre">
+    <a class="fase" href="capitulo1.html">Capítulo 1: Início</a>
+    <a class="fase" href="capitulo2.html">Capítulo 2: Torneio Mortal</a>
+    <a class="fase" href="capitulo3.html">Capítulo 3: Shao Kahn</a>
+    <!-- Continue até o final da história -->
+  </div>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Capítulo 1: Início</title>
+  <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: 'Staatliches', cursive;
+      padding: 40px;
+    }
 
-    <video id="bgVideo" class="bg-video" autoplay muted>
-        <source src="./videos/mortalkombatfundo1.mp4" type="video/mp4">
-        Seu navegador não suporta vídeo em HTML5.
-    </video>
+    h1 {
+      color: red;
+      text-shadow: 2px 2px black;
+      font-size: 36px;
+    }
 
-    <!-- Sons -->
-    <audio id="sfx-navegar" src="audios/troca.mp3" preload="auto"></audio>
-    <audio id="sfx-selecionar" src="sfx/selecionar.mp3" preload="auto"></audio>
-    <audio id="menu-appear-sfx" src="sfx/menu-appear.mp3" preload="auto"></audio>
+    p {
+      font-size: 20px;
+      margin-top: 20px;
+      line-height: 1.6;
+      color: #ddd;
+    }
 
-    <!-- Áudio de fundo -->
-    <audio id="bg-audio-1" src="audios/audio de fundo1.mp3"></audio>
-    <audio id="bg-audio-2" src="audios/audio de fundo2.mp3"></audio>
+    .voltar {
+      margin-top: 30px;
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: red;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
 
-    <div class="menu-container">
-        <div class="menu-item selected"></div>
-        <div class="menu-item">PERSONAGENS</div>
-        <div class="menu-item">HISTORIA</div>
-        <div class="menu-item">TORRE DOS DESAFIOS</div>
-        <div class="menu-item">TREINAMENTO</div>
-        <div class="menu-item">ONLINE</div>
-        <div class="menu-item">EXTRAS</div>
-        <div class="menu-item">SAIR</div>
-    </div>
+    .voltar:hover {
+      background-color: darkred;
+    }
+  </style>
+</head>
+<body>
+  <h1>Capítulo 1: Início</h1>
+  <p>
+    No início, os Deuses Anciões criaram o universo. Entre eles, os Elder Gods colocaram regras que impediam a conquista dos reinos por pura força. Surgiu então o Mortal Kombat, um torneio milenar que determina o destino dos mundos. Shinnok, um antigo Deus Ancião, traiu os seus, buscando controlar os reinos, mas foi derrotado por Raiden e aprisionado no Netherrealm.
+  </p>
 
-    <script>
-        const menuItems = document.querySelectorAll('.menu-item');
-        const bgVideo = document.getElementById('bgVideo');
-        const menuContainer = document.querySelector('.menu-container');
-
-        const sfxNavegar = document.getElementById('sfx-navegar');
-        const sfxSelecionar = document.getElementById('sfx-selecionar');
-        const sfxMenuAppear = document.getElementById('menu-appear-sfx');
-
-        const bgAudio1 = document.getElementById('bg-audio-1');
-        const bgAudio2 = document.getElementById('bg-audio-2');
-
-        let selectedIndex = 0;
-        let hasChanged = false;
-
-        function updateSelection() {
-            menuItems.forEach((item, index) => {
-                if (!item.classList.contains('fixed-selected')) {
-                    item.classList.toggle('selected', index === selectedIndex);
-                }
-            });
-        }
-
-        function changeBackground() {
-            if (hasChanged) return;
-
-            hasChanged = true;
-
-            const newSource = document.createElement('source');
-            newSource.src = 'videos/fundo2.mp4';
-            newSource.type = 'video/mp4';
-            bgVideo.innerHTML = '';
-            bgVideo.appendChild(newSource);
-            bgVideo.loop = false;
-            bgVideo.load();
-            bgVideo.play();
-
-            menuContainer.classList.add('visible');
-
-            sfxMenuAppear.currentTime = 0;
-            sfxMenuAppear.play();
-
-            bgAudio1.pause();
-            bgAudio2.currentTime = 0;
-            bgAudio2.play();
-        }
-
-        document.body.addEventListener('click', changeBackground);
-
-        document.addEventListener('keydown', (e) => {
-            if (!hasChanged) return;
-
-            let prevIndex = selectedIndex;
-
-            if (e.key === 'ArrowDown') {
-                selectedIndex = (selectedIndex + 1) % menuItems.length;
-            } else if (e.key === 'ArrowUp') {
-                selectedIndex = (selectedIndex - 1 + menuItems.length) % menuItems.length;
-            } else if (e.key === 'Enter') {
-                const selectedItem = menuItems[selectedIndex].textContent.trim().toLowerCase().replace(/ /g, '');
-                sfxSelecionar.currentTime = 0;
-                sfxSelecionar.play();
-                setTimeout(() => {
-                    window.location.href = `${selectedItem}.html`;
-                }, 300);
-            }
-
-            if (prevIndex !== selectedIndex) {
-                updateSelection();
-                sfxNavegar.currentTime = 0;
-                sfxNavegar.play();
-            }
-        });
-
-        updateSelection();
-
-        window.addEventListener('DOMContentLoaded', () => {
-            const playAudio = () => {
-                bgAudio1.volume = 0.5;
-                bgAudio1.loop = false;
-                const playPromise = bgAudio1.play();
-                if (playPromise !== undefined) {
-                    playPromise.catch((error) => {
-                        console.warn('Autoplay bloqueado. Tente clicar na tela para ativar o som.');
-                    });
-                }
-            };
-            playAudio();
-        });
-
-        function startAudio() {
-            bgAudio1.play().catch((err) => {
-                console.warn("Autoplay bloqueado:", err);
-            });
-            document.removeEventListener('click', startAudio);
-            document.removeEventListener('keydown', startAudio);
-        }
-
-        document.addEventListener('click', startAudio);
-        document.addEventListener('keydown', startAudio);
-    </script>
+  <a class="voltar" href="torre.html">Voltar para a Torre</a>
 </body>
 </html>
