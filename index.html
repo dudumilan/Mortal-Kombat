@@ -13,15 +13,14 @@
         <source src="./videos/mortalkombatfundo1.mp4" type="video/mp4">
         Seu navegador não suporta vídeo em HTML5.
     </video>
-
-    <!-- Sons -->
     <audio id="sfx-navegar" src="audios/troca.mp3" preload="auto"></audio>
     <audio id="sfx-selecionar" src="sfx/selecionar.mp3" preload="auto"></audio>
     <audio id="menu-appear-sfx" src="sfx/menu-appear.mp3" preload="auto"></audio>
-
-    <!-- Áudio de fundo -->
+    <!-- Áudios de fundo -->
     <audio id="bg-audio-1" src="audios/audio de fundo1.mp3"></audio>
     <audio id="bg-audio-2" src="audios/audio de fundo2.mp3"></audio>
+    <!-- Áudio para Enter: usando o arquivo aceitar.mp3 -->
+    <audio id="sfx-enter" src="aceitar.mp3" preload="auto"></audio>
 
     <div class="menu-container">
         <div class="menu-item selected"></div>
@@ -33,18 +32,16 @@
         <div class="menu-item">EXTRAS</div>
         <div class="menu-item">SAIR</div>
     </div>
-
     <script>
         const menuItems = document.querySelectorAll('.menu-item');
         const bgVideo = document.getElementById('bgVideo');
         const menuContainer = document.querySelector('.menu-container');
-
         const sfxNavegar = document.getElementById('sfx-navegar');
         const sfxSelecionar = document.getElementById('sfx-selecionar');
         const sfxMenuAppear = document.getElementById('menu-appear-sfx');
         const bgAudio1 = document.getElementById('bg-audio-1');
         const bgAudio2 = document.getElementById('bg-audio-2');
-
+        const sfxEnter = document.getElementById('sfx-enter'); // Áudio para Enter (aceitar.mp3)
         let selectedIndex = 0;
         let hasChanged = false;
 
@@ -58,10 +55,7 @@
 
         function changeBackground() {
             if (hasChanged) return;
-
             hasChanged = true;
-
-            // Troca o vídeo de fundo
             const newSource = document.createElement('source');
             newSource.src = 'videos/fundo2.mp4';
             newSource.type = 'video/mp4';
@@ -70,16 +64,12 @@
             bgVideo.loop = false;
             bgVideo.load();
             bgVideo.play();
-
-            // Exibe menu
             menuContainer.classList.add('visible');
-
-            // Toca som de entrada
             sfxMenuAppear.currentTime = 0;
             sfxMenuAppear.play();
-
-            // Para o primeiro áudio e toca o segundo
             bgAudio1.pause();
+
+            // Reinicia e toca o áudio de fundo 2 com volume reduzido
             bgAudio2.currentTime = 0;
             bgAudio2.play();
         }
@@ -88,26 +78,24 @@
 
         document.addEventListener('keydown', (e) => {
             if (!hasChanged) return;
-
             let prevIndex = selectedIndex;
-
             if (e.key === 'ArrowDown') {
                 selectedIndex = (selectedIndex + 1) % menuItems.length;
             } else if (e.key === 'ArrowUp') {
                 selectedIndex = (selectedIndex - 1 + menuItems.length) % menuItems.length;
             } else if (e.key === 'Enter') {
+                // Toca o som de Enter (aceitar.mp3)
+                sfxEnter.currentTime = 0;
+                sfxEnter.play();
+
                 const selectedItem = menuItems[selectedIndex].textContent.trim().toLowerCase().replace(/ /g, '');
-
                 if (!selectedItem) return;
-
                 sfxSelecionar.currentTime = 0;
                 sfxSelecionar.play();
-
                 setTimeout(() => {
                     window.location.href = `${selectedItem}.html`;
-                }, 300); // pequeno delay para o som terminar
+                }, 300);
             }
-
             if (prevIndex !== selectedIndex) {
                 updateSelection();
                 sfxNavegar.currentTime = 0;
@@ -117,34 +105,33 @@
 
         updateSelection();
 
-        // Toca o primeiro áudio de fundo assim que a página carrega (se permitido)
         window.addEventListener('DOMContentLoaded', () => {
+            // Define volumes para os áudios
+            bgAudio1.volume = 0.2;
+            bgAudio2.volume = 0.1;
+            sfxNavegar.volume = 0.2;
+            sfxEnter.volume = 0.2; // volume para o som de Enter
             const playAudio = () => {
-                bgAudio1.volume = 0.5;
                 const playPromise = bgAudio1.play();
-
                 if (playPromise !== undefined) {
                     playPromise.catch((error) => {
                         console.warn('Autoplay bloqueado. Tente clicar na tela para ativar o som.');
                     });
                 }
             };
-
             playAudio();
         });
 
         bgAudio1.loop = false;
-        bgAudio1.volume = 0.5;
+        bgAudio1.volume = 0.2;
 
         function startAudio() {
             bgAudio1.play().catch((err) => {
                 console.warn("Autoplay bloqueado:", err);
             });
-
             document.removeEventListener('click', startAudio);
             document.removeEventListener('keydown', startAudio);
         }
-
         document.addEventListener('click', startAudio);
         document.addEventListener('keydown', startAudio);
     </script>

@@ -1,175 +1,121 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Seleção de Personagens</title>
-  <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
-  <style>
-    body {
-      background: black;
-      color: white;
-      font-family: 'Staatliches', cursive;
-      margin: 0;
-      padding: 0;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      overflow: hidden;
-    }
-
-    .personagem-container {
-      display: flex;
-      width: 100%;
-      max-width: 1200px;
-      align-items: center;
-      justify-content: space-between;
-      padding: 40px;
-      gap: 40px;
-    }
-
-    .personagem-destaque {
-      text-align: center;
-      flex-shrink: 0;
-    }
-
-    #personagem-img {
-      width: 350px;
-      height: auto;
-      border: 4px solid red;
-      transition: transform 0.3s ease;
-    }
-
-    #personagem-img.animate {
-      transform: scale(1.1);
-    }
-
-    #personagem-nome {
-      margin-top: 15px;
-      font-size: 32px;
-      color: orange;
-      text-shadow: 2px 2px black;
-    }
-
-    .grade-personagens {
-      display: grid;
-      grid-template-columns: repeat(3, 100px);
-      grid-template-rows: repeat(3, 100px);
-      gap: 20px;
-      justify-content: center;
-      align-content: center;
-    }
-
-    .personagem {
-      width: 100px;
-      height: 100px;
-      border: 2px solid transparent;
-      background-color: #222;
-      padding: 4px;
-      box-sizing: border-box;
-      cursor: pointer;
-      transition: transform 0.2s;
-    }
-
-    .personagem:hover {
-      transform: scale(1.1);
-      border-color: orange;
-    }
-
-    .personagem.selecionado {
-      border: 2px solid red;
-    }
-
-    .personagem img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-  </style>
+  <meta charset="UTF-8"/>
+  <title>Torre de Desafios MK9</title>
+  <link rel="stylesheet" href="torre.css">
 </head>
 <body>
-  <div class="personagem-container">
-    <div class="personagem-destaque">
-      <img id="personagem-img" src="imagens/scorpion.png" alt="Personagem Selecionado">
-      <div id="personagem-nome">SCORPION</div>
-    </div>
+  
+  <!-- Áudio de confirmação -->
+  <audio id="aceitar" src="audios/aceitar.mp3" preload="auto"></audio>
 
-    <div class="grade-personagens" id="grade">
-      <!-- Apenas 9 para visual, mas pode carregar todos com rolagem ou paginação depois -->
-      <div class="personagem selecionado" data-nome="SCORPION" data-img="imagens/scorpion3.png">
-        <img src="imagens/scorpion.png" alt="Scorpion">
+  <!-- Container Principal da Torre -->
+  <div class="tower-container">
+
+    <!-- Título do Modo -->
+    <h1>TORRE DE DESAFIOS</h1>
+
+    <!-- Área que contém todos os desafios -->
+    <div class="challenges" id="challenges">
+      <!-- Exemplo de 5 desafios, você pode ter quantos desejar -->
+      <div class="challenge">
+        <div class="challenge-info">
+          <h2>Desafio #1</h2>
+          <p>Espada com Espada</p>
+          <p>Recompensa: 100 moedas</p>
+        </div>
       </div>
-      <div class="personagem" data-nome="LIU KANG" data-img="imagens/liukang3.png">
-        <img src="imagens/liukang1.png" alt="Liu Kang">
+      
+      <div class="challenge">
+        <div class="challenge-info">
+          <h2>Desafio #2</h2>
+          <p>Subzero vs Scorpion</p>
+          <p>Recompensa: 150 moedas</p>
+        </div>
       </div>
-      <div class="personagem" data-nome="RAIDEN" data-img="imagens/raiden3.png">
-        <img src="imagens/raiden1.png" alt="Raiden">
+
+      <div class="challenge">
+        <div class="challenge-info">
+          <h2>Desafio #3</h2>
+          <p>Espalda con Espalda</p>
+          <p>Recompensa: 200 moedas</p>
+        </div>
       </div>
-      <div class="personagem" data-nome="SUB-ZERO" data-img="imagens/subzero3.png">
-        <img src="imagens/subzero1.png" alt="Sub-zero">
+
+      <div class="challenge">
+        <div class="challenge-info">
+          <h2>Desafio #4</h2>
+          <p>Raiden vs Shao Kahn</p>
+          <p>Recompensa: 250 moedas</p>
+        </div>
       </div>
-      <div class="personagem" data-nome="NOOB-SAIBOT" data-img="imagens/noob3.png">
-        <img src="imagens/noob1.png" alt="Noob-saibot">
-      </div>
-      <div class="personagem" data-nome="JONNY CAGE" data-img="imagens/jonnycage3.png">
-        <img src="imagens/jonnycage1.png" alt="Jonnycage">
-      </div>
-      <div class="personagem" data-nome="SHANG TSUNG" data-img="imagens/shangsung3.png">
-        <img src="imagens/shangsung1.png" alt="Shang Tsung">
-      </div>
-      <div class="personagem" data-nome="KITANA" data-img="imagens/kitana3.png">
-        <img src="imagens/kitana1.png" alt="Kitana">
-      </div>
-      <div class="personagem" data-nome="MILEENA" data-img="imagens/mileena3.png">
-        <img src="imagens/mileena1.png" alt="Mileena">
+      
+      <div class="challenge">
+        <div class="challenge-info">
+          <h2>Desafio #5</h2>
+          <p>Final Supremo</p>
+          <p>Recompensa: 800 moedas</p>
+        </div>
       </div>
     </div>
   </div>
 
   <script>
-    const personagens = document.querySelectorAll('.personagem');
-    const personagemImg = document.getElementById('personagem-img');
-    const personagemNome = document.getElementById('personagem-nome');
-    const colunas = 3;
+    // Seleciona os elementos
+    const challenges = document.getElementById('challenges');
+    const challengeItems = document.querySelectorAll('.challenge');
+    const audioAceitar = document.getElementById('aceitar');
 
-    let selectedIndex = 0;
+    // Índice que representa o desafio atual
+    let currentIndex = 0;
 
-    function updatePersonagem(index) {
-      personagens.forEach(p => p.classList.remove('selecionado'));
-      const personagem = personagens[index];
-      personagem.classList.add('selecionado');
-      personagemImg.src = personagem.dataset.img;
-      personagemNome.textContent = personagem.dataset.nome;
-    }
-
-    personagens.forEach((p, i) => {
-      p.addEventListener('click', () => {
-        selectedIndex = i;
-        updatePersonagem(i);
-      });
-    });
+    // Ajusta a posição inicial (certifique-se de que combine com o CSS)
+    updateTowerPosition();
 
     document.addEventListener('keydown', (e) => {
-      const total = personagens.length;
-      const linha = Math.floor(selectedIndex / colunas);
-      const coluna = selectedIndex % colunas;
-
-      if (e.key === 'ArrowRight') {
-        if (coluna < colunas - 1 && selectedIndex + 1 < total) selectedIndex++;
-      } else if (e.key === 'ArrowLeft') {
-        if (coluna > 0) selectedIndex--;
+      if (e.key === 'ArrowUp') {
+        // Sobe na torre
+        currentIndex = Math.max(0, currentIndex - 1);
+        updateTowerPosition();
+        animateMove('up');
       } else if (e.key === 'ArrowDown') {
-        if (selectedIndex + colunas < total) selectedIndex += colunas;
-      } else if (e.key === 'ArrowUp') {
-        if (selectedIndex - colunas >= 0) selectedIndex -= colunas;
+        // Desce na torre
+        currentIndex = Math.min(challengeItems.length - 1, currentIndex + 1);
+        updateTowerPosition();
+        animateMove('down');
       } else if (e.key === 'Enter') {
-        const personagem = personagens[selectedIndex];
-        alert(`Você selecionou: ${personagem.dataset.nome}`);
-      }
+        // Animação de seleção e som
+        animateSelect();
+        audioAceitar.currentTime = 0;
+        audioAceitar.play();
 
-      updatePersonagem(selectedIndex);
+        // Aqui você pode colocar lógica para "entrar" no desafio,
+        // como abrir uma página ou mostrar tela de detalhes.
+        console.log(`Selecionou o desafio #${currentIndex + 1}`);
+      }
     });
+
+    function updateTowerPosition() {
+      // Cada "challenge" tem uma altura fixa no CSS, vamos deslizar com base no índice
+      // Exemplo: Se cada item tem 180px de altura, a translação será currentIndex * 180
+      const offset = currentIndex * 180; 
+      challenges.style.transform = `translateY(-${offset}px)`;
+    }
+
+    function animateMove(direction) {
+      // Você pode colocar alguma animação extra aqui, se quiser
+      // Por exemplo, sacudir ou brilhar ao mudar
+      console.log(`Movendo para: ${direction}`);
+    }
+
+    function animateSelect() {
+      // Breve animação de destaque no item selecionado
+      const selected = challengeItems[currentIndex];
+      selected.classList.add('selected-anim');
+      // Remove depois de 1s (ou no final da animação)
+      setTimeout(() => selected.classList.remove('selected-anim'), 1000);
+    }
   </script>
 </body>
 </html>

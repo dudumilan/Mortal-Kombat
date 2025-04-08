@@ -7,36 +7,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
   <style>
     @keyframes fadeSlideIn {
-    0% {
-        opacity: 0;
-        transform: translateY(30px);
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
 
-.personagem-container {
-    animation: fadeSlideIn 0.8s ease-out forwards;
-    opacity: 0;
-}
-
-.grade-personagens .personagem {
-    opacity: 0;
-    animation: fadeSlideIn 0.6s ease forwards;
-}
-
-.grade-personagens .personagem:nth-child(1) { animation-delay: 0.2s; }
-.grade-personagens .personagem:nth-child(2) { animation-delay: 0.3s; }
-.grade-personagens .personagem:nth-child(3) { animation-delay: 0.4s; }
-.grade-personagens .personagem:nth-child(4) { animation-delay: 0.5s; }
-.grade-personagens .personagem:nth-child(5) { animation-delay: 0.6s; }
-.grade-personagens .personagem:nth-child(6) { animation-delay: 0.7s; }
-.grade-personagens .personagem:nth-child(7) { animation-delay: 0.8s; }
-.grade-personagens .personagem:nth-child(8) { animation-delay: 0.9s; }
-.grade-personagens .personagem:nth-child(9) { animation-delay: 1.0s; }
-.grade-personagens .personagem:nth-child(10) { animation-delay: 1.1s; }
     body {
       background: black;
       color: white;
@@ -58,6 +32,8 @@
       justify-content: space-between;
       padding: 40px;
       gap: 40px;
+      animation: fadeSlideIn 0.8s ease-out forwards;
+      opacity: 0;
     }
 
     .personagem-destaque {
@@ -66,10 +42,11 @@
     }
 
     #personagem-img {
-      width: 350px;
+      width: 500px;
       height: auto;
       border: 4px solid red;
       transition: transform 0.3s ease;
+      margin-left: 180px;
     }
 
     #personagem-img.animate {
@@ -101,7 +78,19 @@
       box-sizing: border-box;
       cursor: pointer;
       transition: transform 0.2s;
+      opacity: 0;
+      animation: fadeSlideIn 0.6s ease forwards;
     }
+
+    .personagem:nth-child(1) { animation-delay: 0.2s; }
+    .personagem:nth-child(2) { animation-delay: 0.3s; }
+    .personagem:nth-child(3) { animation-delay: 0.4s; }
+    .personagem:nth-child(4) { animation-delay: 0.5s; }
+    .personagem:nth-child(5) { animation-delay: 0.6s; }
+    .personagem:nth-child(6) { animation-delay: 0.7s; }
+    .personagem:nth-child(7) { animation-delay: 0.8s; }
+    .personagem:nth-child(8) { animation-delay: 0.9s; }
+    .personagem:nth-child(9) { animation-delay: 1.0s; }
 
     .personagem:hover {
       transform: scale(1.1);
@@ -121,80 +110,100 @@
 </head>
 <body onload="document.querySelector('.personagem-container').style.opacity = '1'">
 
+  <audio id="som-selecao"></audio>
+  <audio id="som-confirmacao" src="audios/confirmar.mp3"></audio>
+
   <div class="personagem-container">
     <div class="personagem-destaque">
       <img id="personagem-img" src="imagens/mortalkombat logo.png" alt="Personagem Selecionado">
       <div id="personagem-nome">Personagens</div>
     </div>
 
-    <div class="grade-personagens" id="grade">
-      <div class="personagem selecionado" data-nome="SCORPION" data-img="imagens/scorpion3.png">
+    <div class="grade-personagens">
+      <div class="personagem selecionado" data-nome="SCORPION" data-img="imagens/scorpion3.png" data-audio="audios/scorpion.mp3">
         <img src="imagens/scorpion.png" alt="Scorpion">
       </div>
-      <div class="personagem" data-nome="LIU KANG" data-img="imagens/liukang3.png">
+      <div class="personagem" data-nome="LIU KANG" data-img="imagens/liukang3.png" data-audio="audios/liukang.mp3">
         <img src="imagens/liukang1.png" alt="Liu Kang">
       </div>
-      <div class="personagem" data-nome="RAIDEN" data-img="imagens/raiden3.png">
+      <div class="personagem" data-nome="RAIDEN" data-img="imagens/raiden3.png" data-audio="audios/raiden.mp3">
         <img src="imagens/raiden1.png" alt="Raiden">
       </div>
-      <div class="personagem" data-nome="SUB-ZERO" data-img="imagens/subzero3.png">
+      <div class="personagem" data-nome="SUB-ZERO" data-img="imagens/subzero3.png" data-audio="audios/subzero.mp3">
         <img src="imagens/subzero1.png" alt="Sub-zero">
       </div>
-      <div class="personagem" data-nome="NOOB-SAIBOT" data-img="imagens/noob3.png">
+      <div class="personagem" data-nome="NOOB-SAIBOT" data-img="imagens/noob3.png" data-audio="audios/noob.mp3">
         <img src="imagens/noob1.png" alt="Noob-saibot">
       </div>
-      <div class="personagem" data-nome="JONNY CAGE" data-img="imagens/jonnycage3.png">
+      <div class="personagem" data-nome="JONNY CAGE" data-img="imagens/jonnycage3.png" data-audio="audios/jonnycage.mp3">
         <img src="imagens/jonnycage1.png" alt="Jonnycage">
       </div>
-      <div class="personagem" data-nome="SHANG TSUNG" data-img="imagens/shangsung3.png">
+      <div class="personagem" data-nome="SHANG TSUNG" data-img="imagens/shangsung3.png" data-audio="audios/shangsung.mp3">
         <img src="imagens/shangsung1.png" alt="Shang Tsung">
       </div>
     </div>
   </div>
 
   <script>
-    const personagens = document.querySelectorAll('.personagem');
-    const personagemImg = document.getElementById('personagem-img');
-    const personagemNome = document.getElementById('personagem-nome');
-    const colunas = 3;
+  const personagens = document.querySelectorAll('.personagem');
+  const personagemImg = document.getElementById('personagem-img');
+  const personagemNome = document.getElementById('personagem-nome');
+  const somSelecao = document.getElementById('som-selecao');
+  const somConfirmacao = document.getElementById('som-confirmacao');
+  const colunas = 3;
 
-    let selectedIndex = 0;
+  // Define volume mais baixo para os sons (30% do volume máximo)
+  somSelecao.volume = 0.3;
+  somConfirmacao.volume = 0.3;
 
-    function updatePersonagem(index) {
-      personagens.forEach(p => p.classList.remove('selecionado'));
-      const personagem = personagens[index];
-      personagem.classList.add('selecionado');
-      personagemImg.src = personagem.dataset.img;
-      personagemNome.textContent = personagem.dataset.nome;
+  let selectedIndex = 0;
+
+  function updatePersonagem(index) {
+    personagens.forEach(p => p.classList.remove('selecionado'));
+    const personagem = personagens[index];
+    personagem.classList.add('selecionado');
+    personagemImg.src = personagem.dataset.img;
+    personagemNome.textContent = personagem.dataset.nome;
+  }
+
+  personagens.forEach((p, i) => {
+    p.addEventListener('click', () => {
+      selectedIndex = i;
+      updatePersonagem(i);
+      somSelecao.src = p.dataset.audio;
+      somSelecao.currentTime = 0;
+      somSelecao.play();
+    });
+  });
+
+  document.addEventListener('keydown', (e) => {
+    const total = personagens.length;
+    const linha = Math.floor(selectedIndex / colunas);
+    const coluna = selectedIndex % colunas;
+
+    if (e.key === 'ArrowRight' && coluna < colunas - 1 && selectedIndex + 1 < total) {
+      selectedIndex++;
+    } else if (e.key === 'ArrowLeft' && coluna > 0) {
+      selectedIndex--;
+    } else if (e.key === 'ArrowDown' && selectedIndex + colunas < total) {
+      selectedIndex += colunas;
+    } else if (e.key === 'ArrowUp' && selectedIndex - colunas >= 0) {
+      selectedIndex -= colunas;
+    } else if (e.key === 'Enter') {
+      const personagem = personagens[selectedIndex];
+      somSelecao.src = personagem.dataset.audio;
+      somSelecao.currentTime = 0;
+      somSelecao.play();
+
+      somConfirmacao.currentTime = 0;
+      somConfirmacao.play();
+
+      alert(`Você selecionou: ${personagem.dataset.nome}`);
     }
 
-    personagens.forEach((p, i) => {
-      p.addEventListener('click', () => {
-        selectedIndex = i;
-        updatePersonagem(i);
-      });
-    });
-
-    document.addEventListener('keydown', (e) => {
-      const total = personagens.length;
-      const linha = Math.floor(selectedIndex / colunas);
-      const coluna = selectedIndex % colunas;
-
-      if (e.key === 'ArrowRight') {
-        if (coluna < colunas - 1 && selectedIndex + 1 < total) selectedIndex++;
-      } else if (e.key === 'ArrowLeft') {
-        if (coluna > 0) selectedIndex--;
-      } else if (e.key === 'ArrowDown') {
-        if (selectedIndex + colunas < total) selectedIndex += colunas;
-      } else if (e.key === 'ArrowUp') {
-        if (selectedIndex - colunas >= 0) selectedIndex -= colunas;
-      } else if (e.key === 'Enter') {
-        const personagem = personagens[selectedIndex];
-        alert(`Você selecionou: ${personagem.dataset.nome}`);
-      }
-
-      updatePersonagem(selectedIndex);
-    });
+    updatePersonagem(selectedIndex);
+  });
+</script>
 
   </script>
 </body>

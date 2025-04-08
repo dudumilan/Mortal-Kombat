@@ -1,50 +1,89 @@
+/* Fonte básica e reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 body {
-    background-color: black;
-    color: white;
-    font-family: 'Staatliches', cursive;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 20px;
+  background: #000;
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
+/* Container principal */
+.tower-container {
+  max-width: 400px;
+  margin: 50px auto;
+  position: relative;
+  overflow: hidden; /* para esconder o que fica fora ao mover a lista */
+  border: 2px solid #666;
+  border-radius: 10px;
+  padding: 20px;
+  background: linear-gradient(45deg, #202020, #333);
+}
+
+.tower-container h1 {
+  text-align: center;
+  font-family: 'Staatliches', cursive;
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+/* Container que segura os desafios */
+.challenges {
+  /* Altura fixa, mas pode ser customizada */
+  /* Cada .challenge tem ~180px, então com 5 challenges = 900px total */
+  width: 100%;
+  transition: transform 0.4s ease; /* animação suave ao subir/descer */
+}
+
+/* Cada desafio */
+.challenge {
+  height: 180px;
+  background: #222;
+  margin-bottom: 10px;
+  border: 2px solid #444;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  /* para debug: 
+  outline: 1px solid red; */
+}
+
+.challenge-info {
+  text-align: center;
+  font-family: 'Staatliches', cursive;
+}
+
+.challenge-info h2 {
+  font-size: 24px;
+  color: #ffca28; /* dourado */
+  margin-bottom: 5px;
+}
+
+.challenge-info p {
+  font-size: 18px;
+  margin: 5px 0;
+}
+
+/* Animação rápida de quando ENTER é pressionado */
+.selected-anim {
+  animation: selectScale 0.6s ease;
+}
+
+/* Keyframes do efeito de seleção */
+@keyframes selectScale {
+  0% {
+    transform: scale(1);
+    border-color: #444;
   }
-  
-  .titulo {
-    color: red;
-    font-size: 3em;
-    margin-bottom: 30px;
-    text-shadow: 2px 2px black;
-  }
-  
-  .torre {
-    display: flex;
-    flex-direction: column-reverse;
-    align-items: center;
-    gap: 15px;
-  }
-  
-  .fase {
-    background: linear-gradient(#222, #000);
-    border: 3px solid red;
-    width: 180px;
-    height: 100px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.2em;
-    text-align: center;
-    cursor: pointer;
-    transition: transform 0.3s ease, border-color 0.3s;
-  }
-  
-  .fase span {
-    font-size: 0.8em;
-    color: orange;
-  }
-  
-  .fase:hover {
+  50% {
     transform: scale(1.05);
-    border-color: gold;
+    border-color: orange;
   }
-  
+  100% {
+    transform: scale(1);
+    border-color: #444;
+  }
+}
