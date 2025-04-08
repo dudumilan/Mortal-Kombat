@@ -10,7 +10,6 @@
       0% { opacity: 0; transform: translateY(30px); }
       100% { opacity: 1; transform: translateY(0); }
     }
-
     body {
       background: black;
       color: white;
@@ -23,7 +22,6 @@
       justify-content: flex-start;
       overflow: hidden;
     }
-
     .personagem-container {
       display: flex;
       width: 100%;
@@ -35,12 +33,10 @@
       animation: fadeSlideIn 0.8s ease-out forwards;
       opacity: 0;
     }
-
     .personagem-destaque {
       text-align: center;
       flex-shrink: 0;
     }
-
     #personagem-img {
       width: 500px;
       height: auto;
@@ -48,18 +44,15 @@
       transition: transform 0.3s ease;
       margin-left: 180px;
     }
-
     #personagem-img.animate {
       transform: scale(1.1);
     }
-
     #personagem-nome {
       margin-top: 15px;
       font-size: 32px;
       color: orange;
       text-shadow: 2px 2px black;
     }
-
     .grade-personagens {
       display: grid;
       grid-template-columns: repeat(3, 100px);
@@ -68,7 +61,6 @@
       justify-content: center;
       align-content: center;
     }
-
     .personagem {
       width: 100px;
       height: 100px;
@@ -81,7 +73,6 @@
       opacity: 0;
       animation: fadeSlideIn 0.6s ease forwards;
     }
-
     .personagem:nth-child(1) { animation-delay: 0.2s; }
     .personagem:nth-child(2) { animation-delay: 0.3s; }
     .personagem:nth-child(3) { animation-delay: 0.4s; }
@@ -91,7 +82,6 @@
     .personagem:nth-child(7) { animation-delay: 0.8s; }
     .personagem:nth-child(8) { animation-delay: 0.9s; }
     .personagem:nth-child(9) { animation-delay: 1.0s; }
-
     .personagem:hover {
       transform: scale(1.1);
       border-color: orange;
@@ -109,16 +99,38 @@
   </style>
 </head>
 <body onload="document.querySelector('.personagem-container').style.opacity = '1'">
+    <audio id="bg-music" src="audios/heart_of_courage.mp3" loop></audio>
 
+<script>
+  function startBgMusic() {
+    const bgMusic = document.getElementById('bg-music');
+    bgMusic.volume = 0.02;
+    bgMusic.play().catch((err) => {
+      console.warn('Erro ao tocar música de fundo:', err);
+    });
+    document.removeEventListener('click', startBgMusic);
+    document.removeEventListener('keydown', startBgMusic);
+  }
+  document.addEventListener('click', startBgMusic);
+  document.addEventListener('keydown', startBgMusic);
+  function irParaTorre() {
+      const personagemSelecionado = {
+        nome: 'SCORPION',
+        imagem: 'imagens/scorpion3.png'
+      };
+      localStorage.setItem('personagemSelecionado', JSON.stringify(personagemSelecionado));
+      localStorage.setItem('bgMusicTime', bgMusic.currentTime);
+      window.location.href = 'torre.html';
+  }
+</script>
+  </body>
   <audio id="som-selecao"></audio>
   <audio id="som-confirmacao" src="audios/confirmar.mp3"></audio>
-
   <div class="personagem-container">
     <div class="personagem-destaque">
       <img id="personagem-img" src="imagens/mortalkombat logo.png" alt="Personagem Selecionado">
       <div id="personagem-nome">Personagens</div>
     </div>
-
     <div class="grade-personagens">
       <div class="personagem selecionado" data-nome="SCORPION" data-img="imagens/scorpion3.png" data-audio="audios/scorpion.mp3">
         <img src="imagens/scorpion.png" alt="Scorpion">
@@ -143,7 +155,6 @@
       </div>
     </div>
   </div>
-
   <script>
   const personagens = document.querySelectorAll('.personagem');
   const personagemImg = document.getElementById('personagem-img');
@@ -151,13 +162,9 @@
   const somSelecao = document.getElementById('som-selecao');
   const somConfirmacao = document.getElementById('som-confirmacao');
   const colunas = 3;
-
-  // Define volume mais baixo para os sons (30% do volume máximo)
   somSelecao.volume = 0.3;
   somConfirmacao.volume = 0.3;
-
   let selectedIndex = 0;
-
   function updatePersonagem(index) {
     personagens.forEach(p => p.classList.remove('selecionado'));
     const personagem = personagens[index];
@@ -165,7 +172,6 @@
     personagemImg.src = personagem.dataset.img;
     personagemNome.textContent = personagem.dataset.nome;
   }
-
   personagens.forEach((p, i) => {
     p.addEventListener('click', () => {
       selectedIndex = i;
@@ -175,35 +181,38 @@
       somSelecao.play();
     });
   });
-
   document.addEventListener('keydown', (e) => {
-    const total = personagens.length;
-    const linha = Math.floor(selectedIndex / colunas);
-    const coluna = selectedIndex % colunas;
+  const total = personagens.length;
+  const linha = Math.floor(selectedIndex / colunas);
+  const coluna = selectedIndex % colunas;
+  if (e.key === 'ArrowRight' && coluna < colunas - 1 && selectedIndex + 1 < total) {
+    selectedIndex++;
+  } else if (e.key === 'ArrowLeft' && coluna > 0) {
+    selectedIndex--;
+  } else if (e.key === 'ArrowDown' && selectedIndex + colunas < total) {
+    selectedIndex += colunas;
+  } else if (e.key === 'ArrowUp' && selectedIndex - colunas >= 0) {
+    selectedIndex -= colunas;
+  } else if (e.key === 'Enter') {
+    const personagem = personagens[selectedIndex];
+    somSelecao.src = personagem.dataset.audio;
+    somSelecao.currentTime = 0;
+    somSelecao.play();
+    somConfirmacao.currentTime = 0;
+    somConfirmacao.play();
+    localStorage.setItem('personagemSelecionado', JSON.stringify({
+      nome: personagem.dataset.nome,
+      imagem: personagem.dataset.img
+    }));
+    window.location.href = 'torre.html';
+  }
 
-    if (e.key === 'ArrowRight' && coluna < colunas - 1 && selectedIndex + 1 < total) {
-      selectedIndex++;
-    } else if (e.key === 'ArrowLeft' && coluna > 0) {
-      selectedIndex--;
-    } else if (e.key === 'ArrowDown' && selectedIndex + colunas < total) {
-      selectedIndex += colunas;
-    } else if (e.key === 'ArrowUp' && selectedIndex - colunas >= 0) {
-      selectedIndex -= colunas;
-    } else if (e.key === 'Enter') {
-      const personagem = personagens[selectedIndex];
-      somSelecao.src = personagem.dataset.audio;
-      somSelecao.currentTime = 0;
-      somSelecao.play();
-
-      somConfirmacao.currentTime = 0;
-      somConfirmacao.play();
-
-      alert(`Você selecionou: ${personagem.dataset.nome}`);
-    }
-
-    updatePersonagem(selectedIndex);
-  });
-</script>
+  updatePersonagem(selectedIndex);
+});
+localStorage.setItem('personagemSelecionado', JSON.stringify({
+  nome: 'Scorpion',
+  imagem: 'imagens/scorpion3.png'
+}));
 
   </script>
 </body>

@@ -1,89 +1,67 @@
-/* Fonte básica e reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-body {
-  background: #000;
-  color: #fff;
-  font-family: Arial, sans-serif;
-}
-/* Container principal */
-.tower-container {
-  max-width: 400px;
-  margin: 50px auto;
-  position: relative;
-  overflow: hidden; /* para esconder o que fica fora ao mover a lista */
-  border: 2px solid #666;
-  border-radius: 10px;
-  padding: 20px;
-  background: linear-gradient(45deg, #202020, #333);
-}
-
-.tower-container h1 {
-  text-align: center;
-  font-family: 'Staatliches', cursive;
-  font-size: 36px;
-  margin-bottom: 20px;
-}
-
-/* Container que segura os desafios */
-.challenges {
-  /* Altura fixa, mas pode ser customizada */
-  /* Cada .challenge tem ~180px, então com 5 challenges = 900px total */
-  width: 100%;
-  transition: transform 0.4s ease; /* animação suave ao subir/descer */
-}
-
-/* Cada desafio */
 .challenge {
-  height: 180px;
-  background: #222;
-  margin-bottom: 10px;
-  border: 2px solid #444;
-  border-radius: 5px;
+  width: 100%;
+  height: 140px;
+  margin: 10px auto;
+  background: radial-gradient(#511d1d, #000);
+  border: 5px solid #a67c00;
+  box-shadow: 0 0 15px #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+  color: #fff;
+  font-family: 'MKFont', sans-serif;
+  transition: all 0.3s ease;
+}
+
+.challenge.selected {
+  border-color: gold;
+  box-shadow: 0 0 20px gold;
+}
+
+.challenge-header {
+  text-align: center;
+  font-size: 20px;
+  color: #ffcc00;
+  font-weight: bold;
+  text-shadow: 2px 2px #000;
+}
+
+.challenge-vs {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+}
+
+.fighter {
+  height: 80px;
+  width: auto;
+  object-fit: contain;
+}
+
+.vs-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  position: relative;
-  /* para debug: 
-  outline: 1px solid red; */
 }
 
-.challenge-info {
-  text-align: center;
-  font-family: 'Staatliches', cursive;
-}
-
-.challenge-info h2 {
-  font-size: 24px;
-  color: #ffca28; /* dourado */
-  margin-bottom: 5px;
-}
-
-.challenge-info p {
+.vs-text .number {
   font-size: 18px;
-  margin: 5px 0;
+  color: #fff;
 }
 
-/* Animação rápida de quando ENTER é pressionado */
-.selected-anim {
-  animation: selectScale 0.6s ease;
+.vs-text .vs {
+  font-size: 28px;
+  font-weight: bold;
+  color: #ff0000;
+  text-shadow: 2px 2px #000;
 }
 
-/* Keyframes do efeito de seleção */
-@keyframes selectScale {
-  0% {
-    transform: scale(1);
-    border-color: #444;
-  }
-  50% {
-    transform: scale(1.05);
-    border-color: orange;
-  }
-  100% {
-    transform: scale(1);
-    border-color: #444;
-  }
+.vs-text .reward {
+  font-size: 14px;
+  color: #ffff99;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }

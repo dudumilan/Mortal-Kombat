@@ -16,10 +16,10 @@
     <audio id="sfx-navegar" src="audios/troca.mp3" preload="auto"></audio>
     <audio id="sfx-selecionar" src="sfx/selecionar.mp3" preload="auto"></audio>
     <audio id="menu-appear-sfx" src="sfx/menu-appear.mp3" preload="auto"></audio>
-    <!-- Áudios de fundo -->
+  
     <audio id="bg-audio-1" src="audios/audio de fundo1.mp3"></audio>
     <audio id="bg-audio-2" src="audios/audio de fundo2.mp3"></audio>
-    <!-- Áudio para Enter: usando o arquivo aceitar.mp3 -->
+   
     <audio id="sfx-enter" src="aceitar.mp3" preload="auto"></audio>
 
     <div class="menu-container">
@@ -41,7 +41,7 @@
         const sfxMenuAppear = document.getElementById('menu-appear-sfx');
         const bgAudio1 = document.getElementById('bg-audio-1');
         const bgAudio2 = document.getElementById('bg-audio-2');
-        const sfxEnter = document.getElementById('sfx-enter'); // Áudio para Enter (aceitar.mp3)
+        const sfxEnter = document.getElementById('sfx-enter'); 
         let selectedIndex = 0;
         let hasChanged = false;
 
@@ -69,7 +69,7 @@
             sfxMenuAppear.play();
             bgAudio1.pause();
 
-            // Reinicia e toca o áudio de fundo 2 com volume reduzido
+        
             bgAudio2.currentTime = 0;
             bgAudio2.play();
         }
@@ -84,7 +84,7 @@
             } else if (e.key === 'ArrowUp') {
                 selectedIndex = (selectedIndex - 1 + menuItems.length) % menuItems.length;
             } else if (e.key === 'Enter') {
-                // Toca o som de Enter (aceitar.mp3)
+               
                 sfxEnter.currentTime = 0;
                 sfxEnter.play();
 
@@ -106,11 +106,11 @@
         updateSelection();
 
         window.addEventListener('DOMContentLoaded', () => {
-            // Define volumes para os áudios
+        
             bgAudio1.volume = 0.2;
             bgAudio2.volume = 0.1;
             sfxNavegar.volume = 0.2;
-            sfxEnter.volume = 0.2; // volume para o som de Enter
+            sfxEnter.volume = 0.2;
             const playAudio = () => {
                 const playPromise = bgAudio1.play();
                 if (playPromise !== undefined) {
