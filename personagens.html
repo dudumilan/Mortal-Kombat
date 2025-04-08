@@ -84,11 +84,11 @@
     .personagem:nth-child(9) { animation-delay: 1.0s; }
     .personagem:hover {
       transform: scale(1.1);
-      border-color: orange;
+      border-color: rgb(251, 255, 0);
     }
 
     .personagem.selecionado {
-      border: 2px solid red;
+      border: 2px solid rgb(255, 0, 0);
     }
 
     .personagem img {
@@ -204,14 +204,20 @@
       nome: personagem.dataset.nome,
       imagem: personagem.dataset.img
     }));
-    window.location.href = 'torre.html';
+
+    setTimeout(myGreeting, 3000);
+
   }
 
   updatePersonagem(selectedIndex);
 });
+
+function myGreeting(){
+  window.location.href = 'torre.html';
+}
 localStorage.setItem('personagemSelecionado', JSON.stringify({
   nome: 'Scorpion',
-  imagem: 'imagens/scorpion3.png'
+  imagem: 'imagens/scorpion.png'
 }));
 
   </script>
